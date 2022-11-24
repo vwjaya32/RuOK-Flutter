@@ -46,3 +46,4 @@ Pada modul ini, pengguna dapat mengunggah gambar berisi kutipan motivasi yang da
 <br>
 
 ### Alur integrasi
+Kami akan melakukan integrasi menghubungkan isi JSON yang ada di proyek heroku dengan cara membuat model flutter yang serupa dengan model django. Kami akan mengambil data dari url json yang dimiliki heroku dan mengaktifkan dependency HTTP serta menampilkan data dengan widget FutureBuilder.
