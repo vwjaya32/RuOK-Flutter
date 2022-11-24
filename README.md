@@ -16,7 +16,8 @@ Anggota E-10 👨‍👨‍👦‍👦
 
 # RuOK
 Sebagai kelanjutan dari usaha kami dalam membantu menyelesaikan masalah mental dunia, kami memutuskan untuk melakukan penambahan akses menuju website kami dengan membuat aplikasi _mobile_ yang akan bertindak sebagai _mobile app_ dari _website_ kami. Aplikasi ini kurang lebih akan memiliki modul atau fitur yang sama dengan versi _website_-nya. 
-<br><br>
+<br>
+<br>
 
 ### Link Aplikasi
 👇👇👇👇👇👇👇  
