@@ -24,7 +24,7 @@ MASIH DALAM PENGEMBANGAN
 <br>
 
 ### Modul
-Modul yang akan diimplementasikan-Handler:
+Modul yang akan diimplementasikan dalam aplikasi _mobile_ yang akan kami buat.  
 
 **Stories - Rafito**  
 Pada modul ini pengguna dapat membuat thread dan me-reply thread yang ada. Pengguna yang berpartisipasi dalam suatu story akan masuk dalam daftar peserta thread.<br>
