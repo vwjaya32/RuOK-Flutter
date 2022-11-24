@@ -27,17 +27,16 @@ MASIH DALAM PENGEMBANGAN
 Modul yang akan diimplementasikan-Handler:
 
 **Stories - Rafito**  
-Pada modul ini pengguna dapat membuat thread dan me-reply thread yang ada. Pengguna yang berpartisipasi dalam suatu story akan masuk dalam daftar peserta thread.  
+Pada modul ini pengguna dapat membuat thread dan me-reply thread yang ada. Pengguna yang berpartisipasi dalam suatu story akan masuk dalam daftar peserta thread.<br>
 **Articles - Gerardo**  
-Artikel tentang kesehatan mental akan ditampilkan pada modul ini. Artikel hanya dapat ditulis oleh Admin, namun dapat dibaca oleh semua tipe user.  
+Artikel tentang kesehatan mental akan ditampilkan pada modul ini. Artikel hanya dapat ditulis oleh Admin, namun dapat dibaca oleh semua tipe user.<br>
 **Community Events - Felix**  
-Terdapat daftar event yang dapat diikuti oleh user. Sebuah acara hanya dapat dibuat oleh Admin, user yang sudah login dapat mendaftarkan diri pada acara tersebut.  
+Terdapat daftar event yang dapat diikuti oleh user. Sebuah acara hanya dapat dibuat oleh Admin, user yang sudah login dapat mendaftarkan diri pada acara tersebut.<br>
 **Mental Health Goods - Thobyas**  
-Modul ini akan menampilkan barang yang berhubungan dengan kesehatan mental untuk yang dijual di website ini.  
+Modul ini akan menampilkan barang yang berhubungan dengan kesehatan mental untuk yang dijual di website ini.<br>
 **Mental Health Tests - Balqis**  
-Modul ini akan menampilkan pertanyaan singkat untuk menilai keadaan mental seseorang.  
+Modul ini akan menampilkan pertanyaan singkat untuk menilai keadaan mental seseorang.<br>
 **Motivational Quotes - Vinsen**  
-Pada modul ini, pengguna dapat mengunggah gambar berisi kutipan motivasi yang dapat dilihat oleh user lain.  
-<br>
+Pada modul ini, pengguna dapat mengunggah gambar berisi kutipan motivasi yang dapat dilihat oleh user lain.<br>
 
 ### Alur integrasi
