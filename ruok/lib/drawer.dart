@@ -30,7 +30,7 @@ class ruokDrawer extends StatelessWidget {
                   onTap: (){
                     // Navigator.pushReplacement(
                     //     context,
-                    //     MaterialPageRoute(builder: (context) => const FormPage())
+                    //     MaterialPageRoute(builder: (context) => )
                     // );
                   }
               ),
@@ -39,7 +39,7 @@ class ruokDrawer extends StatelessWidget {
                   onTap: (){
                     // Navigator.pushReplacement(
                     //     context,
-                    //     MaterialPageRoute(builder: (context) => const DataPage())
+                    //     MaterialPageRoute(builder: (context) => )
                     // );
                   }
               ),
@@ -48,7 +48,25 @@ class ruokDrawer extends StatelessWidget {
                   onTap: (){
                     // Navigator.pushReplacement(
                     //     context,
-                    //     MaterialPageRoute(builder: (context) => const WatchListPage())
+                    //     MaterialPageRoute(builder: (context) => )
+                    // );
+                  }
+              ),
+              ListTile(
+                  title: const Text('Tests'),
+                  onTap: (){
+                    // Navigator.pushReplacement(
+                    //     context,
+                    //     MaterialPageRoute(builder: (context) => )
+                    // );
+                  }
+              ),
+              ListTile(
+                  title: const Text('Quotes'),
+                  onTap: (){
+                    // Navigator.pushReplacement(
+                    //     context,
+                    //     MaterialPageRoute(builder: (context) => )
                     // );
                   }
               ),
