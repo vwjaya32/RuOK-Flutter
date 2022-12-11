@@ -14,7 +14,14 @@ class ruokDrawer extends StatelessWidget {
     return Drawer(
         child: Column(
             children: [
-              const ListTile(
+              ListTile(
+                  title: const Text('Home'),
+                  onTap: (){
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => const HomePage())
+                    );
+                  },
               ),
               ListTile(
                   title: const Text('Stories'),
