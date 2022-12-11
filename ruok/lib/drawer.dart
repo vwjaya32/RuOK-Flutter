@@ -64,10 +64,10 @@ class ruokDrawer extends StatelessWidget {
               ListTile(
                   title: const Text('Quotes'),
                   onTap: (){
-                    // Navigator.pushReplacement(
-                    //     context,
-                    //     MaterialPageRoute(builder: (context) => )
-                    // );
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => QuotesPage())
+                    );
                   }
               ),
             ]
