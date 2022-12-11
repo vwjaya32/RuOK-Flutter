@@ -1,5 +1,4 @@
 // To parse this JSON data, do
-//
 // final articles = articlesFromJson(jsonString);
 
 import 'dart:convert';
@@ -11,6 +10,7 @@ List<Articles> articlesFromJson(String str) =>
 String articlesToJson(List<Articles> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
+// ================== MODEL ==================
 class Articles {
   Articles({
     required this.model,
@@ -45,10 +45,8 @@ class Articles {
       },
     );
 
-    // melakukan decode response menjadi bentuk Articles
     var data = jsonDecode(utf8.decode(response.bodyBytes));
 
-    // melakukan konversi data json menjadi object Articles
     List<Articles> articlesList = [];
     for (var d in data) {
       if (d != null) {
@@ -60,6 +58,7 @@ class Articles {
   }
 }
 
+// ================== CHILD MODEL ==================
 class Fields {
   Fields({
     required this.author,

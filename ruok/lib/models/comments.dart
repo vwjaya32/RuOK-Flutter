@@ -1,5 +1,4 @@
 // To parse this JSON data, do
-//
 // final comments = commentsFromJson(jsonString);
 
 import 'dart:convert';
@@ -11,6 +10,7 @@ List<Comments> commentsFromJson(String str) =>
 String commentsToJson(List<Comments> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
+// ================== MODEL ==================
 class Comments {
   Comments({
     required this.model,
@@ -46,10 +46,8 @@ class Comments {
       },
     );
 
-    // melakukan decode response menjadi bentuk Articles
     var data = jsonDecode(utf8.decode(response.bodyBytes));
 
-    // melakukan konversi data json menjadi object Articles
     List<Comments> commentList = [];
     for (var d in data) {
       if (d != null) {
@@ -61,6 +59,7 @@ class Comments {
   }
 }
 
+// ================== CHILD MODEL ==================
 class Fields {
   Fields({
     required this.author,

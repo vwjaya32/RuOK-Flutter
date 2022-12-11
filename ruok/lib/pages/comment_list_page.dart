@@ -1,34 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:ruok/utils/drawer.dart';
 import 'package:ruok/models/comments.dart';
-
-import 'package:http/http.dart' as http;
+import 'package:ruok/pages/comments_form_page.dart';
 
 class MyCommentsPage extends StatefulWidget {
   const MyCommentsPage({
     super.key,
     required this.article_id,
+    required this.title,
+    required this.author,
+    required this.date,
+    required this.content,
   });
 
   final int article_id;
+
+  final String title;
+  final String author;
+  final DateTime date;
+  final String content;
 
   @override
   State<MyCommentsPage> createState() => _MyCommentsPageState();
 }
 
 class _MyCommentsPageState extends State<MyCommentsPage> {
+  static const purple = Color(0xFF613FE5);
+  static const black = Color(0xFF09050D);
+  static const yellow = Color(0xFFFFCA0C);
+  //
+  // -------------- Build --------------
   @override
   Widget build(BuildContext context) {
-    int id = widget.article_id;
+    int artc_id = widget.article_id;
+    String artc_title = widget.title;
+    String artc_author = widget.author;
+    DateTime artc_date = widget.date;
+    String artc_content = widget.content;
+
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: black,
         title: const Text('Comments'),
       ),
-      drawer: RYOKDrawer(),
       body: FutureBuilder(
-        future: Comments.fetchComment(id.toString()),
+        future: Comments.fetchComment(artc_id.toString()),
         builder: (context, AsyncSnapshot snapshot) {
-          // -------------- Comments --------------
+          //
+          // -------------- Show Comments --------------
           if (snapshot.data == null) {
             return const Center(child: CircularProgressIndicator());
           } else {
@@ -54,7 +72,7 @@ class _MyCommentsPageState extends State<MyCommentsPage> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(17.0),
                     boxShadow: const [
-                      BoxShadow(color: Colors.blue, blurRadius: 3.0)
+                      BoxShadow(color: purple, blurRadius: 3.0)
                     ],
                   ),
                   child: Column(
@@ -62,18 +80,18 @@ class _MyCommentsPageState extends State<MyCommentsPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${snapshot.data![index].fields.author} | ${snapshot.data![index].fields.date}",
+                          "${snapshot.data![index].fields.author}",
                           style: const TextStyle(
-                            fontSize: 13.0,
-                            color: Colors.grey,
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          "${snapshot.data![index].fields.content}",
+                          "${snapshot.data![index].fields.content}  (${snapshot.data![index].fields.date})",
                           style: const TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.normal,
+                            fontSize: 13.0,
+                            color: Colors.grey,
                           ),
                         ),
                         const SizedBox(height: 10),
@@ -84,18 +102,28 @@ class _MyCommentsPageState extends State<MyCommentsPage> {
           }
         },
       ),
+      // -------------- Floating Button --------------
       floatingActionButton: Padding(
-        padding: const EdgeInsets.fromLTRB(35, 0, 0, 0),
+        padding: const EdgeInsets.fromLTRB(35, 10, 10, 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Align(
               alignment: Alignment.bottomRight,
               child: FloatingActionButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Icon(Icons.keyboard_double_arrow_left),
+                backgroundColor: yellow,
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CommentsForm(
+                            article_id: artc_id,
+                            author: artc_author,
+                            content: artc_content,
+                            date: artc_date,
+                            title: artc_title,
+                          )),
+                ),
+                child: const Icon(Icons.add_circle_outline),
               ),
             ),
           ],
