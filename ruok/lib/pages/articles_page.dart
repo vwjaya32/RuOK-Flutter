@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ruok/models/articles.dart';
+import 'package:ruok/models/comments.dart';
+
 import 'package:ruok/utils/drawer.dart';
 import 'package:ruok/pages/articles_detail_page.dart';
 
@@ -14,33 +16,6 @@ class MyArticlesPage extends StatefulWidget {
 }
 
 class _MyArcticlesPageState extends State<MyArticlesPage> {
-  // -----------------------------------
-  // -------------- Fetch --------------
-  Future<List<Articles>> fetchToDo() async {
-    var url = Uri.parse('https://ruok.up.railway.app/articles/json-artc');
-    var response = await http.get(
-      url,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    );
-
-    // melakukan decode response menjadi bentuk Articles
-    var data = jsonDecode(utf8.decode(response.bodyBytes));
-
-    // melakukan konversi data json menjadi object Articles
-    List<Articles> articlesList = [];
-    for (var d in data) {
-      if (d != null) {
-        articlesList.add(Articles.fromJson(d));
-      }
-    }
-    print(articlesList);
-
-    return articlesList;
-  }
-
   // -------------- Build --------------
   @override
   Widget build(BuildContext context) {
@@ -50,7 +25,7 @@ class _MyArcticlesPageState extends State<MyArticlesPage> {
           title: const Text('RYOK - Articles'),
         ),
         body: FutureBuilder(
-            future: fetchToDo(),
+            future: Articles.fetchArticles(),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
                 return const Center(child: CircularProgressIndicator());
@@ -83,6 +58,7 @@ class _MyArcticlesPageState extends State<MyArticlesPage> {
                                               snapshot.data![index].fields.date,
                                           content: snapshot
                                               .data![index].fields.content,
+                                          id: snapshot.data![index].pk,
                                         )));
                           },
                           child: Container(

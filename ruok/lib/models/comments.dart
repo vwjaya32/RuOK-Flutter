@@ -1,18 +1,18 @@
 // To parse this JSON data, do
 //
-// final articles = articlesFromJson(jsonString);
+// final comments = commentsFromJson(jsonString);
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-List<Articles> articlesFromJson(String str) =>
-    List<Articles>.from(json.decode(str).map((x) => Articles.fromJson(x)));
+List<Comments> commentsFromJson(String str) =>
+    List<Comments>.from(json.decode(str).map((x) => Comments.fromJson(x)));
 
-String articlesToJson(List<Articles> data) =>
+String commentsToJson(List<Comments> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Articles {
-  Articles({
+class Comments {
+  Comments({
     required this.model,
     required this.pk,
     required this.fields,
@@ -22,7 +22,7 @@ class Articles {
   int pk;
   Fields fields;
 
-  factory Articles.fromJson(Map<String, dynamic> json) => Articles(
+  factory Comments.fromJson(Map<String, dynamic> json) => Comments(
         model: json["model"],
         pk: json["pk"],
         fields: Fields.fromJson(json["fields"]),
@@ -35,12 +35,13 @@ class Articles {
       };
 
   // -------------- Fetch --------------
-  static Future<List<Articles>> fetchArticles() async {
-    var url = Uri.parse('https://ruok.up.railway.app/articles/json-artc');
+  static Future<List<Comments>> fetchComment(String ArtcID) async {
+    var url =
+        Uri.parse('https://ruok.up.railway.app/articles/json-cmts/' + ArtcID);
     var response = await http.get(
       url,
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        // "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
       },
     );
@@ -49,42 +50,41 @@ class Articles {
     var data = jsonDecode(utf8.decode(response.bodyBytes));
 
     // melakukan konversi data json menjadi object Articles
-    List<Articles> articlesList = [];
+    List<Comments> commentList = [];
     for (var d in data) {
       if (d != null) {
-        articlesList.add(Articles.fromJson(d));
+        commentList.add(Comments.fromJson(d));
       }
     }
 
-    return articlesList;
+    return commentList;
   }
 }
 
 class Fields {
   Fields({
     required this.author,
-    required this.title,
-    required this.date,
+    required this.artcPlace,
     required this.content,
+    required this.date,
   });
 
   String author;
-  String title;
-  DateTime date;
+  int artcPlace;
   String content;
+  DateTime date;
 
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
         author: json["author"],
-        title: json["title"],
-        date: DateTime.parse(json["date"]),
+        artcPlace: json["artc_place"],
         content: json["content"],
+        date: DateTime.parse(json["date"]),
       );
 
   Map<String, dynamic> toJson() => {
         "author": author,
-        "title": title,
-        "date":
-            "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
+        "artc_place": artcPlace,
         "content": content,
+        "date": date.toIso8601String(),
       };
 }
