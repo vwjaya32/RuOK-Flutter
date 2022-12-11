@@ -8,7 +8,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:ruok/drawer.dart';
 
 // Import pages
-import 'package:ruok/pages/login_page_form.dart';
+import 'package:ruok/forms/login_page.dart';
 
 // Import provider
 import 'package:ruok/providers/user_provider.dart';
@@ -56,8 +56,10 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: const HomePage(),
+        initialRoute: '/login',
         routes: {
-          "/login": (BuildContext context) => const LoginPage(),
+          '' : (BuildContext context) => const HomePage(),
+          '/login': (BuildContext context) => const LoginPage(),
         },
       ),
     );
@@ -83,21 +85,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+    final user = context.watch<UserProvider>();
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -130,14 +121,8 @@ class _HomePageState extends State<HomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+          children: [
+            Text(user.user.username),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Import functions
-import 'package:ruok/functions/quotes_fetch_json.dart';
+import 'package:ruok/functions/quotes_function_fetch_json.dart';
 
 // Import drawer
 import 'package:ruok/drawer.dart';

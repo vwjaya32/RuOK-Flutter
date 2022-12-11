@@ -45,9 +45,17 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 30),
+                child: Text(
+                    "Login",
+                    style: TextStyle(
+                        fontSize: 30, fontFamily: "Roboto Slab", fontWeight: FontWeight.bold)
+                ),
+              ),
               // Username
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(15),
                 child: TextFormField(
                   decoration: InputDecoration(
                     labelText: "Username",
@@ -76,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               // Password
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(15),
                 child: TextFormField(
                   obscureText: !ViewPassword,
                   enableSuggestions: false,
@@ -108,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  final response = await request.login('<login>', {
+                  final response = await request.login('https://ruok.up.railway.app/mob/login/', {
                       'username': _username,
                       'password': _password,
                   });
@@ -121,6 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                   if (!mounted) return;
                   if (request.loggedIn) {
                     userProvider.user = User.fromJson(response['data']);
+                    print("user " + userProvider.user.username);
                     Navigator.pop(context);
                   } else {
                     userProvider.user = User(
