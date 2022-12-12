@@ -1,4 +1,4 @@
-import 'package:ruok/models/user_model.dart';
+import 'package:ruok/Auth/models/user_model.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 Future<User> fetchUser(CookieRequest request) async {
