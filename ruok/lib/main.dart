@@ -29,16 +29,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<CookieRequest>(create: (_){
+        Provider<CookieRequest>(create: (_) {
           CookieRequest request = CookieRequest();
           return request;
         }),
-        Provider<UserProvider>(create: (_){
-          UserProvider userProvider = UserProvider(
-            user: User(
-              username: 'guest',
-              isAdmin: false)
-            );
+        Provider<UserProvider>(create: (_) {
+          UserProvider userProvider =
+              UserProvider(user: User(username: 'guest', isAdmin: false));
           return userProvider;
         })
       ],
@@ -59,10 +56,9 @@ class MyApp extends StatelessWidget {
         home: const HomePage(),
         initialRoute: '/login',
         routes: {
-          '' : (BuildContext context) => const HomePage(),
+          '': (BuildContext context) => const HomePage(),
           '/login': (BuildContext context) => const LoginPage(),
         },
-
       ),
     );
   }
@@ -98,9 +94,7 @@ class _HomePageState extends State<HomePage> {
     // than having to individually change instances of widgets.
 
     return Scaffold(
-      backgroundColor: black,
       appBar: AppBar(
-        backgroundColor: purple,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
@@ -127,12 +121,11 @@ class _HomePageState extends State<HomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
-          
+
           children: [
             Text(user.user.username),
           ],
         ),
-
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
