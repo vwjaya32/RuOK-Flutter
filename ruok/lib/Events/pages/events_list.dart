@@ -12,6 +12,7 @@ class EventList extends StatefulWidget {
 }
 
 class _EventDetailState extends State<EventList> {
+  static const purple = Color(0xFF613FE5);
   late Future<List<EventItem>> eventlist;
 
   @override
@@ -25,7 +26,8 @@ class _EventDetailState extends State<EventList> {
     final user = context.watch<UserProvider>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('List Of Events'),
+        backgroundColor: purple,
+        title: const Text('List Of Events'),
       ),
       body: FutureBuilder(
         future: eventlist,

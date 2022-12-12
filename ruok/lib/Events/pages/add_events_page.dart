@@ -10,6 +10,7 @@ class EventForm extends StatefulWidget {
 }
 
 class _EventFormState extends State<EventForm> {
+  static const purple = Color(0xFF613FE5);
   final _formKey = GlobalKey<FormState>();
   String? _name = "";
   String? _description = "";
@@ -32,7 +33,8 @@ class _EventFormState extends State<EventForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Community Events'),
+        backgroundColor: purple,
+        title: const Text('Add Community Events'),
       ),
       body: Form(
         key: _formKey,
