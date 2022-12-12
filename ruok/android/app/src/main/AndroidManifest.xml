@@ -31,7 +31,7 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
-    
+
     <!-- Required to fetch data from the Internet. -->
 
     <uses-permission android:name="android.permission.INTERNET" />

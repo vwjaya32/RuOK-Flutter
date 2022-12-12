@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:ruok/Articles/utils/drawer.dart';
 
 // Import Authentication
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MultiProvider(
       providers: [
         Provider<CookieRequest>(create: (_){
@@ -64,9 +66,11 @@ class MyApp extends StatelessWidget {
         },
 
       ),
+
     );
   }
 }
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -87,6 +91,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
     final user = context.watch<UserProvider>();
@@ -98,6 +103,7 @@ class _HomePageState extends State<HomePage> {
     // than having to individually change instances of widgets.
 
     return Scaffold(
+
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
@@ -105,6 +111,7 @@ class _HomePageState extends State<HomePage> {
       ),
 
       drawer: const RuokDrawer(),
+
 
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
