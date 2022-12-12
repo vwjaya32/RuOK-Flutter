@@ -1,50 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:ruok/pages/articles_detail_page.dart';
-import 'package:ruok/pages/articles_page.dart';
+
+import 'package:ruok/Articles/pages/articles_page.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class CommentsForm extends StatefulWidget {
-  CommentsForm({
-    Key? key,
-    required this.article_id,
-    required this.title,
-    required this.author,
-    required this.date,
-    required this.content,
-  }) : super(key: key);
-
-  int article_id;
-  String title;
-  String author;
-  DateTime date;
-  String content;
+class ArticlesForm extends StatefulWidget {
+  ArticlesForm({Key? key}) : super(key: key);
 
   @override
-  State<CommentsForm> createState() => _CommentsFormState();
+  State<ArticlesForm> createState() => _ArticlesFormState();
 }
 
-class _CommentsFormState extends State<CommentsForm> {
+class _ArticlesFormState extends State<ArticlesForm> {
   final _formKey = GlobalKey<FormState>();
-
   static const purple = Color(0xFF613FE5);
   static const black = Color(0xFF09050D);
   static const yellow = Color(0xFFFFCA0C);
   static const white = Color(0xFFFFFFFF);
 
   String author_fill = "";
-  String comment_fill = "";
+  String title_fill = "";
+  String content_fill = "";
 
   // -------------- Post --------------
-  Future<void> submit(BuildContext context, int artc_place) async {
+  Future<void> submit(BuildContext context) async {
     final response = await http.post(
-        Uri.parse(
-            'https://ruok.up.railway.app/articles/write-c-flutter/$artc_place'),
+        Uri.parse('https://ruok.up.railway.app/articles/write-a-flutter'),
         headers: <String, String>{'Content-Type': 'application/json'},
         body: jsonEncode(<String, dynamic>{
           'author': author_fill,
-          'content': comment_fill,
+          'title': title_fill,
+          'content': content_fill,
         }));
   }
 
@@ -52,16 +39,12 @@ class _CommentsFormState extends State<CommentsForm> {
   @override
   Widget build(BuildContext context) {
     FocusNode myFocusNode = FocusNode();
-    int placing = widget.article_id;
-    String artc_title = widget.title;
-    String artc_author = widget.author;
-    DateTime artc_date = widget.date;
-    String artc_content = widget.content;
 
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
-        title: Text('Write Comments'),
         backgroundColor: purple,
+        title: Text('Write Articles'),
       ),
       body: Form(
         key: _formKey,
@@ -74,9 +57,10 @@ class _CommentsFormState extends State<CommentsForm> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    cursorColor: white,
                     decoration: InputDecoration(
-                      hintText: "Strong Cat",
-                      labelText: "Pseudonym",
+                      hintText: "Little Rabbit",
+                      labelText: "Author",
                       labelStyle: TextStyle(
                           color: myFocusNode.hasFocus ? purple : black),
                       enabledBorder: const OutlineInputBorder(
@@ -86,7 +70,7 @@ class _CommentsFormState extends State<CommentsForm> {
                         borderSide: BorderSide(width: 3, color: yellow),
                       ),
                       icon: const Icon(
-                        Icons.title_rounded,
+                        Icons.cruelty_free,
                         color: black,
                       ),
                       border: OutlineInputBorder(
@@ -112,13 +96,13 @@ class _CommentsFormState extends State<CommentsForm> {
                   ),
                 ),
 
-                // -------------- Comment --------------
+                // -------------- Title --------------
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      hintText: "Pretty good!",
-                      labelText: "Comment",
+                      hintText: "Rabbit\'s Mental Health",
+                      labelText: "Title",
                       labelStyle: TextStyle(
                           color: myFocusNode.hasFocus ? purple : black),
                       enabledBorder: const OutlineInputBorder(
@@ -127,24 +111,61 @@ class _CommentsFormState extends State<CommentsForm> {
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(width: 3, color: yellow),
                       ),
-                      icon: const Icon(
-                        Icons.message_rounded,
-                        color: black,
-                      ),
+                      icon: const Icon(Icons.title_rounded, color: black),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                     ),
                     onChanged: (String? value) {
                       setState(() {
-                        comment_fill = value!;
+                        title_fill = value!;
                       });
                     },
                     onSaved: (String? value) {
                       setState(() {
-                        comment_fill = value!;
+                        title_fill = value!;
                       });
                     },
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please fill out this field.';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+
+                // -------------- Content --------------
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "Incredible!",
+                      labelText: "Content",
+                      labelStyle: TextStyle(
+                          color: myFocusNode.hasFocus ? purple : black),
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: const BorderSide(color: black, width: 1.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 3, color: yellow),
+                      ),
+                      icon: const Icon(Icons.message_rounded, color: black),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                    ),
+                    onChanged: (String? value) {
+                      setState(() {
+                        content_fill = value!;
+                      });
+                    },
+                    onSaved: (String? value) {
+                      setState(() {
+                        content_fill = value!;
+                      });
+                    },
+                    // Validator sebagai validasi form
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Please fill out this field.';
@@ -163,7 +184,7 @@ class _CommentsFormState extends State<CommentsForm> {
         backgroundColor: black,
         onPressed: () {
           if (_formKey.currentState!.validate()) {
-            submit(context, placing);
+            submit(context);
             showDialog(
               context: context,
               builder: (context) {
@@ -179,24 +200,16 @@ class _CommentsFormState extends State<CommentsForm> {
                       children: <Widget>[
                         SizedBox(height: 20),
                         const Text(
-                          'Successfully added comment!',
+                          'Thanks! You just create an article for the world.',
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(height: 20),
                         TextButton(
-                          // onPressed: () {
-                          //   Navigator.pop(context);
-                          // },
                           onPressed: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MyDetailPage(
-                                        title: artc_title,
-                                        author: artc_author,
-                                        date: artc_date,
-                                        content: artc_content,
-                                        id: placing)));
+                                    builder: (context) => MyArticlesPage()));
                           },
                           child: Text('Back'),
                         ),
@@ -208,7 +221,7 @@ class _CommentsFormState extends State<CommentsForm> {
             );
           }
         },
-        label: Text("    Add Comment    "),
+        label: Text("    Post Article    "),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

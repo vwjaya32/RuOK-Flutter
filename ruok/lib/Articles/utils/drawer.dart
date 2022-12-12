@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ruok/pages/articles_page.dart';
+import 'package:ruok/Articles/pages/articles_page.dart';
 
 class RYOKDrawer extends StatefulWidget {
   const RYOKDrawer({super.key});

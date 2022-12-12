@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ruok/pages/comment_list_page.dart';
-import 'package:ruok/pages/articles_page.dart';
+import 'package:ruok/Articles/pages/comment_list_page.dart';
+import 'package:ruok/Articles/pages/articles_page.dart';
 import 'package:intl/intl.dart';
-import 'package:ruok/utils/drawer.dart';
+import 'package:ruok/Articles/utils/drawer.dart';
 
 import 'package:http/http.dart' as http;
 

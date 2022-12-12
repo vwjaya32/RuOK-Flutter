@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ruok/models/articles.dart';
+import 'package:ruok/Articles/models/articles.dart';
 
-import 'package:ruok/utils/drawer.dart';
-import 'package:ruok/pages/articles_detail_page.dart';
-import 'package:ruok/pages/articles_form_page.dart';
+import 'package:ruok/Articles/utils/drawer.dart';
+import 'package:ruok/Articles/pages/articles_detail_page.dart';
+import 'package:ruok/Articles/pages/articles_form_page.dart';
 
 class MyArticlesPage extends StatefulWidget {
   const MyArticlesPage({super.key});

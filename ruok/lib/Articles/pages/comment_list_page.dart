@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:ruok/models/comments.dart';
-import 'package:ruok/pages/comments_form_page.dart';
+import 'package:ruok/Articles/models/comments.dart';
+import 'package:ruok/Articles/pages/comments_form_page.dart';
 
 import 'package:http/http.dart' as http;
 
