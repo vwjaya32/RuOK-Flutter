@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:ruok/models/comments.dart';
 import 'package:ruok/pages/comments_form_page.dart';
+
+import 'package:http/http.dart' as http;
 
 class MyCommentsPage extends StatefulWidget {
   const MyCommentsPage({
@@ -27,6 +30,21 @@ class _MyCommentsPageState extends State<MyCommentsPage> {
   static const purple = Color(0xFF613FE5);
   static const black = Color(0xFF09050D);
   static const yellow = Color(0xFFFFCA0C);
+  static const red = Color(0xFFDE1C1C);
+
+  int artc_place_fill = 0;
+  int comment_id_fill = 0;
+
+  // -------------- Delete --------------
+  Future<void> delete(
+      BuildContext context, int artc_place, int comment_id) async {
+    final response = await http.post(
+      Uri.parse(
+          'https://ruok.up.railway.app/articles/delete-c-flutter/$artc_place/$comment_id'),
+      headers: <String, String>{'Content-Type': 'application/json'},
+    );
+  }
+
   //
   // -------------- Build --------------
   @override
@@ -88,13 +106,27 @@ class _MyCommentsPageState extends State<MyCommentsPage> {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          "${snapshot.data![index].fields.content}  (${snapshot.data![index].fields.date})",
+                          "${snapshot.data![index].fields.content}  (${DateFormat('yyyy-MM-dd').format(snapshot.data![index].fields.date)})",
                           style: const TextStyle(
                             fontSize: 13.0,
                             color: Colors.grey,
                           ),
                         ),
                         const SizedBox(height: 10),
+                        // -------------- Delete Button --------------
+                        TextButton(
+                          child: const Text(
+                            "Delete",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(red),
+                          ),
+                          onPressed: () {
+                            delete(context, artc_id, snapshot.data![index].pk);
+                            setState(() {});
+                          },
+                        )
                       ]),
                 ),
               );

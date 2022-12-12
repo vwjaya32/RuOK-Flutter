@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ruok/models/comments.dart';
 import 'package:ruok/pages/comment_list_page.dart';
+import 'package:ruok/pages/articles_page.dart';
 import 'package:intl/intl.dart';
 import 'package:ruok/utils/drawer.dart';
+
+import 'package:http/http.dart' as http;
 
 class MyDetailPage extends StatefulWidget {
   const MyDetailPage({
@@ -28,6 +30,17 @@ class _MyDetailPageState extends State<MyDetailPage> {
   static const purple = Color(0xFF613FE5);
   static const black = Color(0xFF09050D);
   static const yellow = Color(0xFFFFCA0C);
+  static const red = Color(0xFFDE1C1C);
+
+  // -------------- Delete --------------
+  Future<void> delete(BuildContext context, int artc_id) async {
+    final response = await http.post(
+      Uri.parse(
+          'https://ruok.up.railway.app/articles/delete-a-flutter/$artc_id'),
+      headers: <String, String>{'Content-Type': 'application/json'},
+    );
+  }
+
   //
   // -------------- Build --------------
   @override
@@ -73,7 +86,7 @@ class _MyDetailPageState extends State<MyDetailPage> {
             // -------------- Content --------------
             Expanded(
               child: SingleChildScrollView(
-                padding: EdgeInsets.only(bottom: 60.0),
+                padding: EdgeInsets.only(bottom: 60.0, top: 20.0),
                 scrollDirection: Axis.vertical,
                 child: Text(
                   widget.content,
@@ -106,6 +119,21 @@ class _MyDetailPageState extends State<MyDetailPage> {
                           )),
                 ),
                 child: const Icon(Icons.message),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                backgroundColor: red,
+                onPressed: () {
+                  delete(context, artc_id);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MyArticlesPage()),
+                  );
+                },
+                child: const Icon(Icons.delete),
               ),
             ),
           ],
