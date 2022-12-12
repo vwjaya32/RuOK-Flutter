@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // Pages import
 import 'package:ruok/main.dart';
 import 'package:ruok/pages/quotes_page_main.dart';
-import 'package:ruok/pages/events_page.dart';
+import 'package:ruok/Events/pages/events_page.dart';
 
 class RuokDrawer extends StatelessWidget {
   const RuokDrawer({super.key});
@@ -49,10 +49,10 @@ class RuokDrawer extends StatelessWidget {
                 ListTile(
                     title: const Text('Events'),
                     onTap: (){
-                      // Navigator.pushReplacement(
-                      //     context,
-                      //     MaterialPageRoute(builder: (context) => )
-                      // );
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => const EventPage())
+                      );
                     }
                 ),
                 ListTile(
