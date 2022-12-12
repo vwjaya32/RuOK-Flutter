@@ -9,7 +9,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:ruok/providers/user_provider.dart';
 
 // Import model
-import 'package:ruok/models/user_model.dart';
+import 'package:ruok/Auth/models/user_model.dart';
 
 
 class LoginPage extends StatefulWidget {
