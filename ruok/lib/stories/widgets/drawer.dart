@@ -20,7 +20,7 @@ Drawer buildDrawer(BuildContext context) {
           },
         ),
         ListTile(
-          title: const Text('Daftar Rumah Sakit'),
+          title: const Text('Stories'),
           onTap: () {
             Navigator.pushReplacement(
               context,
@@ -30,7 +30,7 @@ Drawer buildDrawer(BuildContext context) {
         ),
 
         ListTile(
-          title: const Text('Tambah Rumah Sakit'),
+          title: const Text('Add Stories'),
           onTap: () {
             // Route menu ke halaman Form Budget
             Navigator.pushReplacement(

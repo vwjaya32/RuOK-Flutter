@@ -61,7 +61,7 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tambah Rumah Sakit'),
+        title: const Text('Tambah Stories'),
       ),
       drawer: buildDrawer(context),
       body: Form(
@@ -77,8 +77,8 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
                   child: TextFormField(
                     controller: _in,
                     decoration: InputDecoration(
-                      hintText: "Contoh: Rumah Sakit Persahabatan",
-                      labelText: "Nama Rumah Sakit",
+                      hintText: "Contoh: Apa Kabar?",
+                      labelText: "Nama Stories",
                       // Menambahkan icon agar lebih intuitif
                       icon: const Icon(Icons.food_bank),
                       // Menambahkan circular border agar lebih rapi
@@ -99,7 +99,7 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
                     },
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Nama Rumah Sakit Masih Kosong!';
+                        return 'Nama Stories Masih Kosong!';
                       }
                       return null;
                     },
@@ -112,7 +112,7 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
                     controller: _in2,
                     decoration: InputDecoration(
                       hintText: "Contoh: 021999333",
-                      labelText: "Nomor Telefon Rumah Sakit",
+                      labelText: "Nomor Telefon Stories",
                       // Menambahkan icon agar lebih intuitif
                       icon: const Icon(Icons.star),
 
@@ -134,7 +134,7 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
                     },
                     validator: (String? rate) {
                       if (rate == null || rate.isEmpty) {
-                        return 'Nomor Telefon Rumah Sakit Masih Kosong!';
+                        return 'Nomor Telefon Stories Masih Kosong!';
                       }
                       return null;
                     },
@@ -147,7 +147,7 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
                     controller: _in3,
                     decoration: InputDecoration(
                       hintText: "JL Kamojang IV",
-                      labelText: "Lokasi Rumah Sakit",
+                      labelText: "Lokasi Stories",
                       // Menambahkan icon agar lebih intuitif
                       icon: const Icon(Icons.location_city),
                       // Menambahkan circular border agar lebih rapi
@@ -168,7 +168,7 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
                     },
                     validator: (String? loc) {
                       if (loc == null || loc.isEmpty) {
-                        return 'Lokasi Rumah Sakit Masih Kosong!';
+                        return 'Lokasi Stories Masih Kosong!';
                       }
                       return null;
                     },
@@ -209,7 +209,7 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Nama Rumah Sakit: $title',
+                                            'Nama Stories: $title',
                                             style: TextStyle(
                                                 color: Colors.deepPurple),
                                           ),
@@ -217,7 +217,7 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
                                             height: 10,
                                           ),
                                           Text(
-                                            'Nomor Telefon Rumah Sakit: $dateTime',
+                                            'Nomor Telefon Stories: $dateTime',
                                             style: TextStyle(
                                                 color: Colors.deepPurple),
                                           ),
@@ -225,7 +225,7 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
                                             height: 10,
                                           ),
                                           Text(
-                                            'Lokasi Rumah Sakit: $content',
+                                            'Lokasi Stories: $content',
                                             style: TextStyle(
                                                 color: Colors.deepPurple),
                                           ),

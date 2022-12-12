@@ -15,7 +15,7 @@ class _MyForumState extends State<MyForumPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Daftar Rumah Sakit'),
+        title: const Text('Daftar Stories'),
       ),
       drawer: buildDrawer(context),
       body: FutureBuilder(
@@ -28,7 +28,7 @@ class _MyForumState extends State<MyForumPage> {
               return Column(
                 children: const [
                   Text(
-                    "Tidak Ada Rumah Sakit",
+                    "Tidak Ada Stories",
                     style: TextStyle(color: Colors.deepPurple, fontSize: 20),
                   ),
                   SizedBox(height: 8),
@@ -89,7 +89,7 @@ class MyForumDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detail Rumah Sakit'),
+        title: const Text('Detail Stories'),
       ),
       drawer: buildDrawer(context),
       body: Container(
