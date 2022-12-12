@@ -63,7 +63,10 @@ class _MyCommentsPageState extends State<MyCommentsPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: black,
-        title: const Text('Comments'),
+        title: const Text(
+          'Comments',
+          style: TextStyle(fontFamily: "Roboto Slab"),
+        ),
       ),
       body: FutureBuilder(
         future: Comments.fetchComment(artc_id.toString()),

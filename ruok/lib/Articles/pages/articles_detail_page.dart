@@ -60,7 +60,10 @@ class _MyDetailPageState extends State<MyDetailPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: black,
-        title: const Text('Details'),
+        title: const Text(
+          'Details',
+          style: TextStyle(fontFamily: "Roboto Slab"),
+        ),
       ),
       drawer: RuokDrawer(),
       body: Container(

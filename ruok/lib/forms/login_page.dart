@@ -11,7 +11,6 @@ import 'package:ruok/providers/user_provider.dart';
 // Import model
 import 'package:ruok/models/user_model.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -22,6 +21,12 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _loginFormKey = GlobalKey<FormState>();
   bool viewPassword = false;
+
+  static const purple = Color(0xFF613FE5);
+  static const black = Color(0xFF09050D);
+  static const yellow = Color(0xFFFFCA0C);
+  static const red = Color(0xFFDE1C1C);
+  static const white = Color(0xFFFFFFFF);
 
   void toggleViewPassword() {
     setState(() {
@@ -38,6 +43,7 @@ class _LoginPageState extends State<LoginPage> {
     final userProvider = context.watch<UserProvider>();
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: purple,
         title: const Text('Login'),
       ),
       body: Form(
@@ -47,15 +53,16 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               const Padding(
                 padding: EdgeInsets.only(top: 30, bottom: 15),
-                child: Text(
-                    "Login",
+                child: Text("Login",
                     style: TextStyle(
-                        fontSize: 30, fontFamily: "Roboto Slab", fontWeight: FontWeight.bold)
-                ),
+                        fontSize: 30,
+                        fontFamily: "Roboto Slab",
+                        fontWeight: FontWeight.bold)),
               ),
               // Username
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
                 child: TextFormField(
                   decoration: InputDecoration(
                     labelText: "Username",
@@ -84,7 +91,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               // Password
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
                 child: TextFormField(
                   obscureText: !viewPassword,
                   enableSuggestions: false,
@@ -114,33 +122,39 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
               ),
-              ElevatedButton(
-                onPressed: () async {
-                  final response = await request.login('https://ruok.up.railway.app/mob/login/', {
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: black, foregroundColor: white),
+                  onPressed: () async {
+                    final response = await request
+                        .login('https://ruok.up.railway.app/mob/login/', {
                       'username': _username,
                       'password': _password,
-                  });
-                  if (!response.containsKey('status')) {
-                    response['status'] = false;
-                  }
-                  if (!response.containsKey('message')) {
-                    response['message'] = 'Failed to connect to server';
-                  }
-                  if (!mounted) return;
-                  if (request.loggedIn) {
-                    userProvider.user = User.fromJson(response['data']);
-                    Navigator.pop(context);
-                  } else {
-                    userProvider.user = User(
-                        username: 'guest',
-                        isAdmin: false);
-                    const snackBar = SnackBar(
-                      content: Text("Failed to Login, Check your Username/Password"),
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
-                },
-                child: const Text('Login'),
+                    });
+                    if (!response.containsKey('status')) {
+                      response['status'] = false;
+                    }
+                    if (!response.containsKey('message')) {
+                      response['message'] = 'Failed to connect to server';
+                    }
+                    if (!mounted) return;
+                    if (request.loggedIn) {
+                      userProvider.user = User.fromJson(response['data']);
+                      Navigator.pop(context);
+                    } else {
+                      userProvider.user =
+                          User(username: 'guest', isAdmin: false);
+                      const snackBar = SnackBar(
+                        content: Text(
+                            "Failed to Login, Check your Username/Password"),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
+                  },
+                  child: const Text('Login'),
+                ),
               ),
             ],
           ),

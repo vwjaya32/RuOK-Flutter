@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
           // or simply save your changes to "hot reload" in a Flutter IDE).
           // Notice that the counter didn't reset back to zero; the application
           // is not restarted.
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.purple,
         ),
         home: const HomePage(),
         initialRoute: '/login',
@@ -77,28 +77,31 @@ class HomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title = 'RuOK';
+  final String title = 'Hi there! Are you OK?';
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  static const purple = Color(0xFF613FE5);
+  static const black = Color(0xFF09050D);
+  static const yellow = Color(0xFFFFCA0C);
+  static const red = Color(0xFFDE1C1C);
+  static const white = Color(0xFFFFFFFF);
+
   @override
   Widget build(BuildContext context) {
     final user = context.watch<UserProvider>();
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
 
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        centerTitle: true,
+        backgroundColor: purple,
+        title: Text(
+          widget.title,
+          style: TextStyle(fontFamily: "Roboto Slab"),
+        ),
       ),
 
       drawer: const RuokDrawer(),
@@ -124,7 +127,21 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
 
           children: [
-            Text(user.user.username),
+            Image.network(
+              "https://img.freepik.com/premium-vector/cartoon-purple-monster-with-shocked-expression-illustration_6460-781.jpg?w=2000",
+              height: 500,
+            ),
+            const Text(
+              "You are now login as",
+              style: TextStyle(
+                  fontFamily: "Roboto Slab", color: black, fontSize: 30),
+            ),
+            Text(user.user.username,
+                style: const TextStyle(
+                    fontFamily: "Roboto Slab",
+                    color: purple,
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold)),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
