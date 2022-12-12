@@ -7,6 +7,8 @@ import 'package:ruok/functions/quotes_function_fetch_json.dart';
 // Import drawer
 import 'package:ruok/drawer.dart';
 
+// Import masonry
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class QuotesPage extends StatefulWidget {
   const QuotesPage({Key? key}) : super(key: key);
@@ -21,9 +23,19 @@ class _QuotesPageState extends State<QuotesPage> {
   Widget build(BuildContext context){
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Motivational Quotes'),
+          title: const Text(
+            'Motivational Quotes',
+            style: TextStyle(
+              fontFamily: "Roboto Slab",
+              fontWeight: FontWeight.bold,
+              color: Colors.deepPurple,
+            ),
+          ),
+          backgroundColor: Colors.white30,
+          foregroundColor: Colors.deepPurple,
+          elevation: 0,
         ),
-        drawer: const ruokDrawer(),
+        drawer: const RuokDrawer(),
         body: FutureBuilder(
             future: fetchQuotes(),
             builder: (context, AsyncSnapshot snapshot) {
@@ -36,50 +48,28 @@ class _QuotesPageState extends State<QuotesPage> {
                       Text(
                         "Tidak ada Quotes :(",
                         style: TextStyle(
-                            color: Color(0xff59A5D8),
+                            color: Colors.deepPurple,
                             fontSize: 20),
                       ),
                       SizedBox(height: 8),
                     ],
                   );
                 } else {
-                  return Column(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(top: 15, bottom: 8),
-                        child: Text(
-                          "Motivational Quotes",
-                          style: TextStyle(
-                              fontSize: 30, fontFamily: "Roboto Slab", fontWeight: FontWeight.bold)
+                  return Container(
+                    margin: const EdgeInsets.only(top: 30, left: 8, right: 8),
+                    child: MasonryGridView.builder(
+                        scrollDirection: Axis.vertical,
+                        crossAxisSpacing: 8,
+                        mainAxisSpacing: 8,
+                        gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
                         ),
-                      ),
-                      ListView.builder(
-                          itemCount: snapshot.data!.length,
-                          shrinkWrap: true,
-                          itemBuilder: (_, index)=> Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                            padding: const EdgeInsets.all(3.0),
-                            decoration: BoxDecoration(
-                                color:Colors.white,
-                                borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ListTile(
-                                  title: Text(
-                                    "${snapshot.data![index].fields.title}",
-                                    style: const TextStyle(
-                                      fontSize: 15.0,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                      ),
-                    ],
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index){
+                          return ClipRRect(
+                            child: Image.network(snapshot.data![index].fields.image),
+                          );
+                        }),
                   );
                 }
               }

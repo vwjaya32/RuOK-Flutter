@@ -87,7 +87,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
     final user = context.watch<UserProvider>();
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -101,7 +100,7 @@ class _HomePageState extends State<HomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      drawer: const ruokDrawer(),
+      drawer: const RuokDrawer(),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.

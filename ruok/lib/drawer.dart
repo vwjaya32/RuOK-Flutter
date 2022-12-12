@@ -6,8 +6,8 @@ import 'package:ruok/main.dart';
 import 'package:ruok/pages/quotes_page_main.dart';
 import 'package:ruok/pages/events_page.dart';
 
-class ruokDrawer extends StatelessWidget {
-  const ruokDrawer({super.key});
+class RuokDrawer extends StatelessWidget {
+  const RuokDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class ruokDrawer extends StatelessWidget {
                     onTap: (){
                       Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => QuotesPage())
+                          MaterialPageRoute(builder: (context) => const QuotesPage())
                       );
                     }
                 ),

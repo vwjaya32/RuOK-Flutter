@@ -21,11 +21,11 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _loginFormKey = GlobalKey<FormState>();
-  bool ViewPassword = false;
+  bool viewPassword = false;
 
-  void viewPassword() {
+  void toggleViewPassword() {
     setState(() {
-      ViewPassword = !ViewPassword;
+      viewPassword = !viewPassword;
     });
   }
 
@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.all(15),
                 child: TextFormField(
-                  obscureText: !ViewPassword,
+                  obscureText: !viewPassword,
                   enableSuggestions: false,
                   autocorrect: false,
                   decoration: InputDecoration(
@@ -129,14 +129,13 @@ class _LoginPageState extends State<LoginPage> {
                   if (!mounted) return;
                   if (request.loggedIn) {
                     userProvider.user = User.fromJson(response['data']);
-                    print("user " + userProvider.user.username);
                     Navigator.pop(context);
                   } else {
                     userProvider.user = User(
                         username: 'guest',
                         isAdmin: false);
-                    final snackBar = SnackBar(
-                      content: Text(response['message']),
+                    const snackBar = SnackBar(
+                      content: Text("Failed to Login, Check your Username/Password"),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
