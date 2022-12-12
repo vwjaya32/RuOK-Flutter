@@ -3,6 +3,7 @@ import 'package:ruok/pages/mh_tests.dart';
 import 'package:ruok/pages/events_page.dart';
 import 'package:ruok/pages/stories.dart';
 import 'package:ruok/main.dart';
+import 'package:ruok/drawer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -57,10 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          ),
+      appBar: AppBar(title: Text('Homepage')),
+      drawer: const RuokDrawer(),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
