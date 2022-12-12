@@ -10,6 +10,9 @@ import 'package:ruok/drawer.dart';
 // Import masonry
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+// Import page
+import 'package:ruok/pages/quotes_page_perImage.dart';
+
 class QuotesPage extends StatefulWidget {
   const QuotesPage({Key? key}) : super(key: key);
 
@@ -23,6 +26,7 @@ class _QuotesPageState extends State<QuotesPage> {
   Widget build(BuildContext context){
     return Scaffold(
         appBar: AppBar(
+          toolbarHeight: 60,
           title: const Text(
             'Motivational Quotes',
             style: TextStyle(
@@ -56,7 +60,7 @@ class _QuotesPageState extends State<QuotesPage> {
                   );
                 } else {
                   return Container(
-                    margin: const EdgeInsets.only(top: 30, left: 8, right: 8),
+                    margin: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 8),
                     child: MasonryGridView.builder(
                         scrollDirection: Axis.vertical,
                         crossAxisSpacing: 8,
@@ -66,15 +70,23 @@ class _QuotesPageState extends State<QuotesPage> {
                         ),
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index){
-                          return ClipRRect(
-                            child: Image.network(snapshot.data![index].fields.image),
+                          return GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => QuotesPerImage(fields: snapshot.data![index].fields))
+                              );
+                            },
+                            child: ClipRRect(
+                              child: Image.network(snapshot.data![index].fields.image),
+                            ),
                           );
                         }),
                   );
                 }
               }
             }
-        )
+        ),
     );
   }
 }
