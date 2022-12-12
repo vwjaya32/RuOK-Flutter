@@ -44,7 +44,7 @@ class _EventFormState extends State<EventForm> {
                 Row(
                   children: const [
                     Text("Enter Event's Name:",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
                   ],
                 ),
                 TextFormField(
@@ -75,7 +75,7 @@ class _EventFormState extends State<EventForm> {
                   Row(
                   children: const [
                     Text("Enter Event's Description:",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)
                   ],
                 ),
                 TextFormField(
@@ -106,9 +106,11 @@ class _EventFormState extends State<EventForm> {
                     children: const [Text('')],
                   ),
                   Row(
-                    
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                    const Text("Event's Date: ",
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                    const SizedBox(width: 2,),
                     SizedBox(
                     height: 50,
                     child: ElevatedButton(
@@ -124,8 +126,19 @@ class _EventFormState extends State<EventForm> {
                       setState(() => _date = newDate);
                     }),
                     ),
-                    const SizedBox(width: 20),
-                    SizedBox(
+                    ],
+                  ),
+                  Row(
+                    children: const [Text('')],
+                  ),
+                  Row(
+                  children: const [
+                    Text("Enter Event's Time: ",
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)
+                  ],),
+                  Row(
+                    children: [
+                      SizedBox(
                       height: 50,
                       width: 100,
                       child: TextFormField(

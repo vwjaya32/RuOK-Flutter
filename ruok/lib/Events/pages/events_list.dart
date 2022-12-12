@@ -128,62 +128,66 @@ class _EventDetailState extends State<EventList> {
                                 const Text('Event Date: '),
                                 Text('${snapshot.data![index].fields.date}'),
                               ],
+                            ),
+                            Row(
+                              children: [
+                                Visibility(child: user.user.username != 'guest'
+                                  ? TextButton(
+                                    child: snapshot.data![index].fields.is_joined ? Text('Unjoin') : Text('Join'),
+                                    onPressed: (){
+                                      showDialog(
+                                        context: context, 
+                                        builder: (context){
+                                          return Dialog(
+                                            shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                          elevation: 15,
+                                          child: Container(
+                                            child: ListView(
+                                              padding: const EdgeInsets.only(
+                                              top: 20, bottom: 20),
+                                              shrinkWrap: true,
+                                              children: <Widget>[
+                                                Column(
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: const [
+                                                        Text('Are You Sure?', style: TextStyle(
+                                                          fontSize: 18.0,
+                                                          fontWeight: FontWeight.bold,)),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: [
+                                                        TextButton(onPressed: () {
+                                                          Navigator.pop(context);
+                                                          }, 
+                                                          child: const Text('No')),
+                                                        TextButton(onPressed: () {
+                                                          setState(() {
+                                                            snapshot.data![index].fields.is_joined = !snapshot.data![index].fields.is_joined;
+                                                          });
+                                                          Navigator.pop(context);
+                                                        }, child: const Text('Yes'))
+                                                      ],
+                                                    )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          );
+                                        });
+                                      }, 
+                                    )
+                                  : Text(''))
+                              ],
                             )
                           ],)
                         ),
-                      Visibility(child: user.user.username != 'guest'
-                      ? TextButton(
-                        child: snapshot.data![index].fields.is_joined ? Text('Unjoin') : Text('Join'),
-                        onPressed: (){
-                          showDialog(
-                            context: context, 
-                            builder: (context){
-                              return Dialog(
-                                shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              elevation: 15,
-                              child: Container(
-                                child: ListView(
-                                  padding: const EdgeInsets.only(
-                                  top: 20, bottom: 20),
-                                  shrinkWrap: true,
-                                  children: <Widget>[
-                                    Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: const [
-                                            Text('Are You Sure?', style: TextStyle(
-                                              fontSize: 18.0,
-                                              fontWeight: FontWeight.bold,)),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            TextButton(onPressed: () {
-                                              Navigator.pop(context);
-                                              }, 
-                                              child: const Text('No')),
-                                            TextButton(onPressed: () {
-                                              setState(() {
-                                                snapshot.data![index].fields.is_joined = !snapshot.data![index].fields.is_joined;
-                                              });
-                                              Navigator.pop(context);
-                                            }, child: const Text('Yes'))
-                                          ],
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                              );
-                            });
-                          }, 
-                        )
-                      : Text(''))
                     ],
                   ),
                 )
