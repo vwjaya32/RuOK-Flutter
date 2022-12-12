@@ -13,6 +13,7 @@ class EventPage extends StatefulWidget {
 }
 
 class EventPageState extends State<EventPage> {
+  static const purple = Color(0xFF613FE5);
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class EventPageState extends State<EventPage> {
     
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: purple,
         title: Text('Halo ${user.user.username}!'),
       ),
       drawer: RuokDrawer(),
@@ -29,10 +31,10 @@ class EventPageState extends State<EventPage> {
               children: [
                 const Padding(
                   padding:EdgeInsets.only(top: 20),
-                  child:Text('COMMUNITY EVENTS', style: TextStyle(fontSize: 80),)),
+                  child: Text('COMMUNITY EVENTS', style: TextStyle(fontSize: 30), textAlign: TextAlign.center,)),
                 const Padding(
                   padding: EdgeInsets.only(bottom: 30),
-                  child: Text('From the Community For the Community', style: TextStyle(fontSize: 30),),),
+                  child: Text('From the Community For the Community', style: TextStyle(fontSize: 20), textAlign: TextAlign.center,)),
                 Padding(padding: const EdgeInsets.only(top: 10),
                 child: Column(
                   children: [
