@@ -231,7 +231,7 @@ class _EventFormState extends State<EventForm> {
                                           )),
                                       const SizedBox(height: 20,),
                                       TextButton(
-                                      child: Text('Back'),
+                                      child: const Text('Back'),
                                       onPressed: () {
                                         Navigator.pop(context);
                                       },
