@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ruok/Articles/models/articles.dart';
 
-import 'package:ruok/Articles/utils/drawer.dart';
 import 'package:ruok/Articles/pages/articles_detail_page.dart';
 import 'package:ruok/Articles/pages/articles_form_page.dart';
+
+import 'package:ruok/drawer.dart';
+
+import 'package:provider/provider.dart';
+import 'package:ruok/providers/user_provider.dart';
 
 class MyArticlesPage extends StatefulWidget {
   const MyArticlesPage({super.key});
@@ -21,9 +25,11 @@ class _MyArcticlesPageState extends State<MyArticlesPage> {
   // -------------- Build --------------
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<UserProvider>();
+
     return Scaffold(
       backgroundColor: black,
-      drawer: RYOKDrawer(),
+      drawer: RuokDrawer(),
       appBar: AppBar(
         backgroundColor: purple,
         title: const Text('Articles'),
@@ -96,23 +102,29 @@ class _MyArcticlesPageState extends State<MyArticlesPage> {
         },
       ),
       // -------------- Floating Button --------------
+
       floatingActionButton: Padding(
           padding: const EdgeInsets.fromLTRB(35, 10, 10, 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Align(),
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: FloatingActionButton(
-                  backgroundColor: yellow,
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ArticlesForm()),
-                  ),
-                  child: Icon(Icons.post_add),
-                ),
-              ),
+              Visibility(
+                child: user.user.username == 'admin'
+                    ? Align(
+                        alignment: Alignment.bottomLeft,
+                        child: FloatingActionButton(
+                          backgroundColor: yellow,
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ArticlesForm()),
+                          ),
+                          child: Icon(Icons.post_add),
+                        ),
+                      )
+                    : Text(""),
+              )
             ],
           )),
     );

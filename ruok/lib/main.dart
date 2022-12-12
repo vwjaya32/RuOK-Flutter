@@ -31,20 +31,18 @@ class MyApp extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        Provider<CookieRequest>(create: (_){
+        Provider<CookieRequest>(create: (_) {
           CookieRequest request = CookieRequest();
           return request;
         }),
-        Provider<UserProvider>(create: (_){
-          UserProvider userProvider = UserProvider(
-            user: User(
-              username: 'guest',
-              isAdmin: false)
-            );
+        Provider<UserProvider>(create: (_) {
+          UserProvider userProvider =
+              UserProvider(user: User(username: 'guest', isAdmin: false));
           return userProvider;
         })
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'RuOK',
         theme: ThemeData(
           // This is the theme of your application.
@@ -61,10 +59,9 @@ class MyApp extends StatelessWidget {
         home: const HomePage(),
         initialRoute: '/login',
         routes: {
-          '' : (BuildContext context) => const HomePage(),
+          '': (BuildContext context) => const HomePage(),
           '/login': (BuildContext context) => const LoginPage(),
         },
-
       ),
 
     );
@@ -132,12 +129,11 @@ class _HomePageState extends State<HomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
-          
+
           children: [
             Text(user.user.username),
           ],
         ),
-
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:ruok/Articles/pages/comment_list_page.dart';
 import 'package:ruok/Articles/pages/articles_page.dart';
 import 'package:intl/intl.dart';
-import 'package:ruok/Articles/utils/drawer.dart';
 
 import 'package:http/http.dart' as http;
+
+import 'package:ruok/drawer.dart';
+
+import 'package:provider/provider.dart';
+import 'package:ruok/providers/user_provider.dart';
 
 class MyDetailPage extends StatefulWidget {
   const MyDetailPage({
@@ -45,6 +49,8 @@ class _MyDetailPageState extends State<MyDetailPage> {
   // -------------- Build --------------
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<UserProvider>();
+
     int artc_id = widget.id;
     String artc_title = widget.title;
     String artc_author = widget.author;
@@ -56,7 +62,7 @@ class _MyDetailPageState extends State<MyDetailPage> {
         backgroundColor: black,
         title: const Text('Details'),
       ),
-      drawer: RYOKDrawer(),
+      drawer: RuokDrawer(),
       body: Container(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -121,21 +127,24 @@ class _MyDetailPageState extends State<MyDetailPage> {
                 child: const Icon(Icons.message),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                backgroundColor: red,
-                onPressed: () {
-                  delete(context, artc_id);
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const MyArticlesPage()),
-                  );
-                },
-                child: const Icon(Icons.delete),
-              ),
-            ),
+            Visibility(
+                child: user.user.username == "admin"
+                    ? Align(
+                        alignment: Alignment.bottomRight,
+                        child: FloatingActionButton(
+                          backgroundColor: red,
+                          onPressed: () {
+                            delete(context, artc_id);
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MyArticlesPage()),
+                            );
+                          },
+                          child: const Icon(Icons.delete),
+                        ),
+                      )
+                    : Text(""))
           ],
         ),
       ),
