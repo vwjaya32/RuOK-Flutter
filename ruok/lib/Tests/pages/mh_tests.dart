@@ -3,6 +3,7 @@ import 'package:ruok/pages/events_page.dart';
 import 'package:ruok/pages/stories.dart';
 import 'package:ruok/main.dart';
 import 'package:ruok/drawer.dart';
+import 'package:ruok/Tests/utils/fetch_test.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -83,13 +84,25 @@ class _TestPageState extends State<TestPage> {
           Center(
               child: Text(
                   'Spend just 3 minutes of taking this test and we will quickly calculate your mental health state.')),
+          Column(children: const [
+            Center(
+                child: Text('Caution!',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 141, 18, 10)))),
+            Center(
+                child: Text(
+                    'This test does not serve as a real diagnostic tool, but can be used to picture of the condition you are currently experiencing. ')),
+          ]),
           Center(
-            child: Text(
-                'All : $_totalcounter , $_onecounter , $_twocounter, $_threecounter, $_fourcounter, $_fivecounter'),
-          ),
+              child: Text(
+                  'Use this test wisely, answer honestly according to your current conditions. Please consult your psychologist or psychiatrist if needed.')),
           ListTile(
             title: const Text('Do you often feel sad lately?',
-                style: TextStyle(color: Colors.green)),
+                style: TextStyle(
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                )),
             trailing: DropdownButton(
               value: sad,
               icon: const Icon(Icons.keyboard_arrow_down),
@@ -120,7 +133,10 @@ class _TestPageState extends State<TestPage> {
           ListTile(
             title: const Text(
                 'In this one week, do you feel mentally tired for more than three days?',
-                style: TextStyle(color: Colors.green)),
+                style: TextStyle(
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                )),
             trailing: DropdownButton(
               value: tired,
               icon: const Icon(Icons.keyboard_arrow_down),
@@ -151,7 +167,10 @@ class _TestPageState extends State<TestPage> {
           ListTile(
             title: const Text(
                 'How many times have you cried or been silent in the past two weeks?',
-                style: TextStyle(color: Colors.green)),
+                style: TextStyle(
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                )),
             trailing: DropdownButton(
               value: cry,
               icon: const Icon(Icons.keyboard_arrow_down),
@@ -181,7 +200,10 @@ class _TestPageState extends State<TestPage> {
           ),
           ListTile(
             title: const Text('Do you feel alone in this world?',
-                style: TextStyle(color: Colors.green)),
+                style: TextStyle(
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                )),
             trailing: DropdownButton(
               value: lonely,
               icon: const Icon(Icons.keyboard_arrow_down),
@@ -212,7 +234,10 @@ class _TestPageState extends State<TestPage> {
           ),
           ListTile(
             title: const Text('Are you thinking about committing suicide?',
-                style: TextStyle(color: Colors.green)),
+                style: TextStyle(
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                )),
             trailing: DropdownButton(
               value: suicidal,
               icon: const Icon(Icons.keyboard_arrow_down),
@@ -241,21 +266,44 @@ class _TestPageState extends State<TestPage> {
               },
             ),
           ),
+          ListTile(
+              title: const Text(
+                'Tests Results',
+                textAlign: TextAlign.center,
+              ),
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const FetchRestsPage()));
+              }),
           Container(
-            height: 100,
+            height: 50,
             width: 200,
             child: Text(
-              'Press The Button Below to   Check your Result!',
+              'Press The Button Below to check your Result!',
               style: TextStyle(fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Container(
+            height: 50,
+            width: 200,
+            child: Text(
+              '$_totalcounter',
+              textAlign: TextAlign.center,
             ),
           ),
           Container(
             height: 100,
-            width: 200,
-            child: Text('$_results'),
+            width: 400,
+            child: Text(
+              '$_results',
+              textAlign: TextAlign.center,
+            ),
           ),
           Container(
-            height: 50,
+            height: 5,
             width: 200,
           ),
           FloatingActionButton(

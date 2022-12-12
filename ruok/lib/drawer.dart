@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:ruok/main.dart';
 // import 'package:ruok/pages/quotes_page_main.dart';
 import 'package:ruok/pages/events_page.dart';
-import 'package:ruok/pages/mh_tests.dart';
+import 'package:ruok/Tests/pages/mh_tests.dart';
 
 class RuokDrawer extends StatelessWidget {
   const RuokDrawer({super.key});
