@@ -27,17 +27,18 @@ class _QuotesPageState extends State<QuotesPage> {
   Widget build(BuildContext context){
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           toolbarHeight: 60,
           title: const Text(
             'Motivational Quotes',
             style: TextStyle(
               fontFamily: "Roboto Slab",
               fontWeight: FontWeight.bold,
-              color: Colors.deepPurple,
+              color: Color(0xFF613FE5),
             ),
           ),
           backgroundColor: Colors.white30,
-          foregroundColor: Colors.deepPurple,
+          foregroundColor: Color(0xFF613FE5),
           elevation: 0,
         ),
         drawer: const RuokDrawer(),
@@ -53,7 +54,7 @@ class _QuotesPageState extends State<QuotesPage> {
                       Text(
                         "Tidak ada Quotes :(",
                         style: TextStyle(
-                            color: Colors.deepPurple,
+                            color: Color(0xFF613FE5),
                             fontSize: 20),
                       ),
                       SizedBox(height: 8),
@@ -64,14 +65,22 @@ class _QuotesPageState extends State<QuotesPage> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          TextButton(
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Color(0xFF613FE5),
+                              ),
                               onPressed: (){
-                                Navigator.pushReplacement(
+                                Navigator.push(
                                     context,
                                     MaterialPageRoute(builder: (context) => const QuotesForm())
                                 );
                               },
-                              child: const Text('Share Yours')),
+                              child: const Text(
+                                  'Share Yours',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  )
+                              )),
                           Container(
                             margin: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 8),
                             child: MasonryGridView.builder(

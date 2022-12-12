@@ -12,6 +12,9 @@ import 'package:ruok/providers/user_provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+// Import pages
+import 'package:ruok/Quotes/pages/quotes_page_main.dart';
+
 class QuotesForm extends StatefulWidget {
   const QuotesForm({Key? key}) : super(key:key);
 
@@ -25,9 +28,9 @@ class _QuotesFormState extends State<QuotesForm> {
   String? _image = "";
   String? user = "";
 
-  Future<void> submit(BuildContext context) async {
-    final who = context.watch<UserProvider>();
+  Future<void> submit(CookieRequest request, UserProvider who) async {
     user = who.user.username;
+
     final response = await http.post(
         Uri.parse('https://ruok.up.railway.app/quotes/mob_add_quote'),
         headers: <String, String>{'Content-Type': 'application/json'},
@@ -40,19 +43,29 @@ class _QuotesFormState extends State<QuotesForm> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+    final who = context.watch<UserProvider>();
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const QuotesPage()));
+          },
+          icon:Icon(Icons.arrow_back),
+        ),
+        centerTitle: true,
         toolbarHeight: 60,
         title: const Text(
           'Motivational Quotes',
           style: TextStyle(
             fontFamily: "Roboto Slab",
             fontWeight: FontWeight.bold,
-            color: Colors.deepPurple,
+            color: Color(0xFF613FE5),
           ),
         ),
         backgroundColor: Colors.white30,
-        foregroundColor: Colors.deepPurple,
+        foregroundColor: Color(0xFF613FE5),
         elevation: 0,
       ),
       body: Form(
@@ -115,14 +128,18 @@ class _QuotesFormState extends State<QuotesForm> {
                         return null;
                       },
                     ),
+                    SizedBox(height: 15,),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        TextButton(
-                          child: const Text('Share yours'),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xFF613FE5),
+                          ),
+                          child: const Text('Share with others'),
                           onPressed: (){
                             if(_formKey.currentState!.validate()){
-                              submit(context);
+                              submit(request, who);
                               showDialog(
                                   context: context,
                                   builder: (context){
@@ -146,7 +163,9 @@ class _QuotesFormState extends State<QuotesForm> {
                                               TextButton(
                                                 child: Text('Back'),
                                                 onPressed: () {
-                                                  Navigator.pop(context);
+                                                  Navigator.pushReplacement(context,
+                                                      MaterialPageRoute(builder: (context) => const QuotesPage())
+                                                  );
                                                 },
                                               ),
                                             ],

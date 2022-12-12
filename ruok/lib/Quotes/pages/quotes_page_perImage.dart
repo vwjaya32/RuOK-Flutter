@@ -26,28 +26,32 @@ class _QuotesPerImageState extends State<QuotesPerImage> {
         toolbarHeight: 60,
         title: const Text(''),
         backgroundColor: Colors.white30,
-        foregroundColor: Colors.deepPurple,
+        foregroundColor: Color(0xFF613FE5),
         elevation: 0,
       ),
       drawer: const RuokDrawer(),
       body: Container(
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                width: double.infinity,
-                height: 500,
-                alignment: Alignment.center,
-                child: Image.network(
-                    widget.fields.image,
-                    fit: BoxFit.cover),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Container(
+                  color: Color(0xFF09050D),
+                  width: double.infinity,
+                  height: 500,
+                  alignment: Alignment.center,
+                  child: Image.network(
+                      widget.fields.image,
+                      fit: BoxFit.cover),
+                ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 15, left: 15),
+                padding: const EdgeInsets.only(top: 15, left: 15, right:15),
                 child: Text(
                     '${widget.fields.title}',
                     style: const TextStyle(
-                      fontSize: 24,
+                      fontSize: 32,
                       fontWeight: FontWeight.bold,
                       color: Colors.deepPurple,
                     )
@@ -55,11 +59,11 @@ class _QuotesPerImageState extends State<QuotesPerImage> {
               ),
               const SizedBox(height: 5),
               Padding(
-                padding: const EdgeInsets.only(left: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Text(
-                    '${widget.fields.user}',
+                    'By ${widget.fields.user}',
                     style: const TextStyle(
-                        fontSize: 12,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold)
                 ),
               )
