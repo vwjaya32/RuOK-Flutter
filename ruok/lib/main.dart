@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
         })
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'RuOK',
         theme: ThemeData(
           // This is the theme of your application.

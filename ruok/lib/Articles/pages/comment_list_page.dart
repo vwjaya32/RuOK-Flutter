@@ -5,6 +5,9 @@ import 'package:ruok/Articles/pages/comments_form_page.dart';
 
 import 'package:http/http.dart' as http;
 
+import 'package:provider/provider.dart';
+import 'package:ruok/providers/user_provider.dart';
+
 class MyCommentsPage extends StatefulWidget {
   const MyCommentsPage({
     super.key,
@@ -49,6 +52,8 @@ class _MyCommentsPageState extends State<MyCommentsPage> {
   // -------------- Build --------------
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<UserProvider>();
+
     int artc_id = widget.article_id;
     String artc_title = widget.title;
     String artc_author = widget.author;
@@ -113,19 +118,26 @@ class _MyCommentsPageState extends State<MyCommentsPage> {
                           ),
                         ),
                         const SizedBox(height: 10),
+
                         // -------------- Delete Button --------------
-                        TextButton(
-                          child: const Text(
-                            "Delete",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(red),
-                          ),
-                          onPressed: () {
-                            delete(context, artc_id, snapshot.data![index].pk);
-                            setState(() {});
-                          },
+                        Visibility(
+                          child: user.user.username == 'admin'
+                              ? TextButton(
+                                  child: const Text(
+                                    "Delete",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all(red),
+                                  ),
+                                  onPressed: () {
+                                    delete(context, artc_id,
+                                        snapshot.data![index].pk);
+                                    setState(() {});
+                                  },
+                                )
+                              : Text(""),
                         )
                       ]),
                 ),
