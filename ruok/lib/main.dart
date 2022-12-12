@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ruok/Articles/utils/drawer.dart';
 
 // Import Authentication
 import 'package:provider/provider.dart';
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
           '' : (BuildContext context) => const HomePage(),
           '/login': (BuildContext context) => const LoginPage(),
         },
+
       ),
     );
   }
@@ -94,13 +96,18 @@ class _HomePageState extends State<HomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+
     return Scaffold(
+      backgroundColor: black,
       appBar: AppBar(
+        backgroundColor: purple,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+
       drawer: const RuokDrawer(),
+
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -120,10 +127,12 @@ class _HomePageState extends State<HomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
+          
           children: [
             Text(user.user.username),
           ],
         ),
+
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
