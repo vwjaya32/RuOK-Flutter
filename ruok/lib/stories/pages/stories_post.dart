@@ -140,7 +140,7 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
                     controller: _in2,
                     decoration: InputDecoration(
                       hintText: "Misalkan: Mau curhat nih!",
-                      labelText: "Judul stories",
+                      labelText: "Judul Reply",
                       // Menambahkan icon agar lebih intuitif
                       icon: const Icon(Icons.star),
 

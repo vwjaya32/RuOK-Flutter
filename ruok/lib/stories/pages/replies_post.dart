@@ -14,14 +14,12 @@ class MyRepliesFormPage extends StatefulWidget {
 
 class RepliesContent {
   late String author;
-  late String title;
-  late String dateTime;
+  late String date;
   late String content;
 
   RepliesContent({
     required this.author,
-    required this.title,
-    required this.dateTime,
+    required this.date,
     required this.content,
   });
 }
@@ -32,9 +30,8 @@ class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
   static const black = Color(0xFF09050D);
   static const yellow = Color(0xFFFFCA0C);
   static const red = Color(0xFFDE1C1C);
-  String? _title;
   String? _author;
-  String? _dateTime;
+  String? _date;
   String? _content;
 
   Future<RepliesContent>? _futureAlbum;
@@ -43,16 +40,14 @@ class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
   final TextEditingController _in3 = TextEditingController();
   final TextEditingController _in4 = TextEditingController();
 
-  void submit(
-      String author, String title, String dateTime, String content) async {
+  void submit(String author, String date, String content) async {
     var url =
         Uri.parse('https://ruok.up.railway.app/Replies/add-Replies-flutter/');
 
     var map = <String, dynamic>{};
 
     map["author"] = (author);
-    map["title"] = (title);
-    map["date_time"] = (dateTime);
+    map["date_time"] = (date);
     map["content"] = (content);
 
     var response = await http.post(url, body: map);
@@ -65,13 +60,13 @@ class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    _dateTime = DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now());
+    _date = DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now());
     return Scaffold(
       backgroundColor: black,
       appBar: AppBar(
         backgroundColor: purple,
         title: const Text(
-          'ADD STORIES',
+          'ADD REPLIES',
           style: TextStyle(
             color: Colors.white,
             fontSize: 25,
@@ -153,51 +148,17 @@ class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
                     // Menambahkan behavior saat nama diketik
                     onChanged: (String? author) {
                       setState(() {
-                        _title = author!;
+                        _content = author!;
                       });
                     },
                     onSaved: (String? author) {
                       setState(() {
-                        _title = author!;
+                        _content = author!;
                       });
                     },
                     validator: (String? author) {
                       if (author == null || author.isEmpty) {
                         return 'Judul Stories Masih Kosong!';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Padding(
-                  // Menggunakan padding sebesar 8 pixels
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: _in4,
-                    decoration: InputDecoration(
-                      hintText: "Misalkan: Hari ini, aku ketemu...",
-                      labelText: "Isinya apa sih?",
-                      // Menambahkan icon agar lebih intuitif
-                      icon: const Icon(Icons.food_bank),
-                      // Menambahkan circular border agar lebih rapi
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                    ),
-                    // Menambahkan behavior saat nama diketik
-                    onChanged: (String? value) {
-                      setState(() {
-                        _content = value!;
-                      });
-                    },
-                    onSaved: (String? value) {
-                      setState(() {
-                        _content = value!;
-                      });
-                    },
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Konten Stories Masih Kosong!';
                       }
                       return null;
                     },
@@ -213,7 +174,7 @@ class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
                         alignment: Alignment.center),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        submit(_author!, _title!, _dateTime!, _content!);
+                        submit(_author!, _date!, _content!);
                         showDialog(
                           context: context,
                           builder: (context) {
@@ -238,7 +199,7 @@ class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Author Stories: $_author',
+                                            'Author Reply: $_author',
                                             style: TextStyle(
                                                 color: Colors.deepPurple),
                                           ),
@@ -246,7 +207,7 @@ class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
                                             height: 10,
                                           ),
                                           Text(
-                                            'Judul Stories: $_title',
+                                            'Waktu Posting Reply: $_date',
                                             style: TextStyle(
                                                 color: Colors.deepPurple),
                                           ),
@@ -254,15 +215,7 @@ class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
                                             height: 10,
                                           ),
                                           Text(
-                                            'Waktu posting Stories: $_dateTime',
-                                            style: TextStyle(
-                                                color: Colors.deepPurple),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            'Isi Stories kamu: $_content',
+                                            'Isi Reply kamu: $_content',
                                             style: TextStyle(
                                                 color: Colors.deepPurple),
                                           ),

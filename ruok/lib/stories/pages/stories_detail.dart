@@ -2,6 +2,7 @@ import 'package:ruok/stories/models/replies_models.dart';
 import 'package:ruok/stories/pages/stories_fetch.dart';
 import 'package:ruok/stories/pages/replies_fetch.dart';
 import 'package:ruok/stories/pages/replies_detail.dart';
+import 'package:ruok/stories/pages/replies_post.dart';
 import 'package:ruok/stories/models/stories_models.dart';
 import 'package:ruok/stories/widgets/drawer.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,7 @@ class MyForumDetail extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  MyForum.fields.author.toString().substring(7),
+                  MyForum.fields.author.toString(),
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,
@@ -137,7 +138,7 @@ class MyForumDetail extends StatelessWidget {
       floatingActionButton: Padding(
         padding: const EdgeInsets.fromLTRB(35, 10, 10, 10),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Align(
               alignment: Alignment.bottomRight,
@@ -145,6 +146,17 @@ class MyForumDetail extends StatelessWidget {
                 backgroundColor: purple,
                 onPressed: () => Navigator.pop(context),
                 child: const Icon(Icons.arrow_back),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                backgroundColor: purple,
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyRepliesFormPage()),
+                ),
+                child: const Icon(Icons.message),
               ),
             ),
           ],
