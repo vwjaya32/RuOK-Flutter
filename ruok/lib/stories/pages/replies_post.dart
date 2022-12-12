@@ -123,7 +123,7 @@ class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
                     },
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Author Stories Masih Kosong!';
+                        return 'Author Replies Masih Kosong!';
                       }
                       return null;
                     },
@@ -136,7 +136,7 @@ class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
                     controller: _in2,
                     decoration: InputDecoration(
                       hintText: "Misalkan: Mau curhat nih!",
-                      labelText: "Judul stories",
+                      labelText: "Judul Reply",
                       // Menambahkan icon agar lebih intuitif
                       icon: const Icon(Icons.star),
 
@@ -158,7 +158,7 @@ class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
                     },
                     validator: (String? author) {
                       if (author == null || author.isEmpty) {
-                        return 'Judul Stories Masih Kosong!';
+                        return 'Judul Replies Masih Kosong!';
                       }
                       return null;
                     },
