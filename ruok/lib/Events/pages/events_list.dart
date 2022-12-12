@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ruok/Events/models/com_events.dart';
 import 'package:ruok/Events/utils/fetch_events.dart';
+import 'package:provider/provider.dart';
+import 'package:ruok/providers/user_provider.dart';
 
 class EventList extends StatefulWidget {
   const EventList({Key? key}) : super(key:key);
@@ -20,6 +22,7 @@ class _EventDetailState extends State<EventList> {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<UserProvider>();
     return Scaffold(
       appBar: AppBar(
         title: Text('List Of Events'),
@@ -128,7 +131,8 @@ class _EventDetailState extends State<EventList> {
                             )
                           ],)
                         ),
-                      TextButton(
+                      Visibility(child: user.user.username != 'guest'
+                      ? TextButton(
                         child: snapshot.data![index].fields.is_joined ? Text('Unjoin') : Text('Join'),
                         onPressed: (){
                           showDialog(
@@ -179,6 +183,7 @@ class _EventDetailState extends State<EventList> {
                             });
                           }, 
                         )
+                      : Text(''))
                     ],
                   ),
                 )
