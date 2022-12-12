@@ -3,6 +3,9 @@ import 'package:ruok/pages/stories.dart';
 import 'package:ruok/main.dart';
 import 'package:ruok/drawer.dart';
 import 'package:ruok/Tests/utils/fetch_test.dart';
+import 'package:ruok/Tests/models/my_results.dart';
+import 'package:ruok/Tests/models/resultss.dart';
+import 'package:ruok/Tests/pages/mh_save.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -267,9 +270,7 @@ class _TestPageState extends State<TestPage> {
               ),
               onTap: () {
                 Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const FetchRestsPage()));
+                    context, MaterialPageRoute(builder: (context) => save()));
               }),
           Container(
             height: 50,
@@ -310,6 +311,26 @@ class _TestPageState extends State<TestPage> {
             hoverColor: Color.fromARGB(255, 219, 71, 7),
           ),
         ],
+      ),
+      floatingActionButton: Container(
+        alignment: Alignment.bottomCenter,
+        child: TextButton(
+          child: const Text(
+            "Save",
+            style: TextStyle(color: Colors.white),
+          ),
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.blue)),
+          onPressed: () {
+            if (_formKey.currentState!.validate()) {
+              _formKey.currentState!.save();
+              setState(() {
+                int score = _totalcounter;
+                setScore(_totalcounter);
+              });
+            }
+          },
+        ),
       ),
 
       // This trailing comma makes auto-formatting nicer for build methods.
