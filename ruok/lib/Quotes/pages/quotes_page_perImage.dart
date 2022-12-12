@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Import model
-import 'package:ruok/Quotes/quotes_model.dart';
+import 'package:ruok/Quotes/models/quotes_model.dart';
 
 // Import drawer
 import 'package:ruok/drawer.dart';
