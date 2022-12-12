@@ -4,7 +4,7 @@ import 'package:ruok/stories/pages/replies_fetch.dart';
 import 'package:ruok/stories/pages/replies_detail.dart';
 import 'package:ruok/stories/pages/replies_post.dart';
 import 'package:ruok/stories/models/stories_models.dart';
-import 'package:ruok/stories/widgets/drawer.dart';
+import 'package:ruok/drawer.dart';
 import 'package:flutter/material.dart';
 
 class MyForumDetail extends StatelessWidget {
@@ -28,7 +28,7 @@ class MyForumDetail extends StatelessWidget {
               fontWeight: FontWeight.bold,
             )),
       ),
-      drawer: buildDrawer(context),
+      drawer: RuokDrawer(),
       body: SingleChildScrollView(
         child: Stack(children: [
           Container(
@@ -100,7 +100,7 @@ class MyForumDetail extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 230),
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 260),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               boxShadow: [

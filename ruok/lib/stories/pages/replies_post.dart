@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../widgets/drawer.dart';
+import 'package:ruok/drawer.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -74,7 +74,7 @@ class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
           ),
         ),
       ),
-      drawer: buildDrawer(context),
+      drawer: RuokDrawer(),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(

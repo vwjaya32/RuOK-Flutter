@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:ruok/providers/user_provider.dart';
 
 class EventList extends StatefulWidget {
-  const EventList({Key? key}) : super(key:key);
+  const EventList({Key? key}) : super(key: key);
 
   @override
   State<EventList> createState() => _EventDetailState();
@@ -16,7 +16,7 @@ class _EventDetailState extends State<EventList> {
   late Future<List<EventItem>> eventlist;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     eventlist = fetchEvents();
   }
@@ -27,178 +27,235 @@ class _EventDetailState extends State<EventList> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: purple,
-        title: const Text('List Of Events'),
+        title: const Text(
+          'List Of Events',
+          style: TextStyle(fontFamily: "Roboto Slab"),
+        ),
       ),
       body: FutureBuilder(
-        future: eventlist,
-        builder: (context, AsyncSnapshot snapshot) {
-          if (snapshot.data == null) {return const Center(child: CircularProgressIndicator());
-          }else {
-            if (!snapshot.hasData){
-              return Column(children: const[Text('Tidak ada Event')],);
-            }else{
-              return ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (_, index) => 
-                Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 12
-                  ),
-                  padding: const EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                  color: Colors.white, 
-                  border: Border.all(
-                    width: 2,
-                    color: ((snapshot.data![index].fields.is_joined)
-                        ? Colors.green
-                        : Colors.black)
-                    ),
-                  boxShadow: [BoxShadow(
-                    color: ((snapshot.data![index].fields.is_joined)
-                        ? Colors.green
-                        : Colors.black),
-                        blurRadius: 5.0,)]),
-                  child: GestureDetector(
-                    onTap: (){
-                      showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          elevation: 15,
-                          child: Container(
-                            child: ListView(
-                              padding: const EdgeInsets.only(
-                                  top: 20, bottom: 20),
-                              shrinkWrap: true,
-                              children: <Widget>[
-                                Stack(
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Text('${snapshot.data![index].fields.name}',
-                                            style: const TextStyle(fontSize: 35, fontWeight: FontWeight.bold),)
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Text('${snapshot.data![index].fields.description}',
-                                            )
-                                          ],
-                                        ),
-                                        Row(children: const [Text('')],)
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text('Kembali', style: TextStyle(color: purple),))
-                              ],
-                            ),
-                          ),
-                        );
-                      });
-                    },
-                    child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [ 
-                            Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text('${snapshot.data![index].fields.name}',
-                                style: const TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
+          future: eventlist,
+          builder: (context, AsyncSnapshot snapshot) {
+            if (snapshot.data == null) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              if (!snapshot.hasData) {
+                return Column(
+                  children: const [Text('Tidak ada Event')],
+                );
+              } else {
+                return ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (_, index) => Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
+                        padding: const EdgeInsets.all(20.0),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                                width: 2,
+                                color: ((snapshot.data![index].fields.is_joined)
+                                    ? Colors.green
+                                    : Colors.black)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: ((snapshot.data![index].fields.is_joined)
+                                    ? Colors.green
+                                    : Colors.black),
+                                blurRadius: 5.0,
+                              )
+                            ]),
+                        child: GestureDetector(
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return Dialog(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
+                                    elevation: 15,
+                                    child: Container(
+                                      child: ListView(
+                                        padding: const EdgeInsets.only(
+                                            top: 20, bottom: 20),
+                                        shrinkWrap: true,
+                                        children: <Widget>[
+                                          Stack(
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        '${snapshot.data![index].fields.name}',
+                                                        style: const TextStyle(
+                                                            fontSize: 35,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      )
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        '${snapshot.data![index].fields.description}',
+                                                      )
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: const [Text('')],
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text(
+                                                'Kembali',
+                                                style: TextStyle(color: purple),
+                                              ))
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                });
+                          },
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '${snapshot.data![index].fields.name}',
+                                        style: const TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const Text('Event Date: '),
-                                Text('${snapshot.data![index].fields.date}'),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Visibility(child: user.user.username != 'guest'
-                                  ? TextButton(
-                                    child: snapshot.data![index].fields.is_joined 
-                                    ? const Text('Unjoin', style: TextStyle(color: purple),) 
-                                    : const Text('Join', style: TextStyle(color: purple),),
-                                    onPressed: (){
-                                      showDialog(
-                                        context: context, 
-                                        builder: (context){
-                                          return Dialog(
-                                            shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10),
-                                          ),
-                                          elevation: 15,
-                                          child: Container(
-                                            child: ListView(
-                                              padding: const EdgeInsets.only(
-                                              top: 20, bottom: 20),
-                                              shrinkWrap: true,
-                                              children: <Widget>[
-                                                Column(
-                                                  children: [
-                                                    Row(
-                                                      mainAxisAlignment: MainAxisAlignment.center,
-                                                      children: const [
-                                                        Text('Are You Sure?', style: TextStyle(
-                                                          fontSize: 18.0,
-                                                          fontWeight: FontWeight.bold,)),
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment: MainAxisAlignment.center,
-                                                      children: [
-                                                        TextButton(onPressed: () {
-                                                          Navigator.pop(context);
-                                                          }, 
-                                                          child: const Text('No', style: TextStyle(color: purple),)),
-                                                        TextButton(onPressed: () {
-                                                          setState(() {
-                                                            snapshot.data![index].fields.is_joined = !snapshot.data![index].fields.is_joined;
-                                                          });
-                                                          Navigator.pop(context);
-                                                        }, child: const Text('Yes', style: TextStyle(color: purple),))
-                                                      ],
-                                                    )
-                                                  ],
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const Text('Event Date: '),
+                                      Text(
+                                          '${snapshot.data![index].fields.date}'),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Visibility(
+                                          child: user.user.username != 'guest'
+                                              ? TextButton(
+                                                  child: snapshot.data![index]
+                                                          .fields.is_joined
+                                                      ? const Text(
+                                                          'Unjoin',
+                                                          style: TextStyle(
+                                                              color: purple),
+                                                        )
+                                                      : const Text(
+                                                          'Join',
+                                                          style: TextStyle(
+                                                              color: purple),
+                                                        ),
+                                                  onPressed: () {
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return Dialog(
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10),
+                                                            ),
+                                                            elevation: 15,
+                                                            child: Container(
+                                                              child: ListView(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        top: 20,
+                                                                        bottom:
+                                                                            20),
+                                                                shrinkWrap:
+                                                                    true,
+                                                                children: <
+                                                                    Widget>[
+                                                                  Column(
+                                                                    children: [
+                                                                      Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        children: const [
+                                                                          Text(
+                                                                              'Are You Sure?',
+                                                                              style: TextStyle(
+                                                                                fontSize: 18.0,
+                                                                                fontWeight: FontWeight.bold,
+                                                                              )),
+                                                                        ],
+                                                                      ),
+                                                                      Row(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        children: [
+                                                                          TextButton(
+                                                                              onPressed: () {
+                                                                                Navigator.pop(context);
+                                                                              },
+                                                                              child: const Text(
+                                                                                'No',
+                                                                                style: TextStyle(color: purple),
+                                                                              )),
+                                                                          TextButton(
+                                                                              onPressed: () {
+                                                                                setState(() {
+                                                                                  snapshot.data![index].fields.is_joined = !snapshot.data![index].fields.is_joined;
+                                                                                });
+                                                                                Navigator.pop(context);
+                                                                              },
+                                                                              child: const Text(
+                                                                                'Yes',
+                                                                                style: TextStyle(color: purple),
+                                                                              ))
+                                                                        ],
+                                                                      )
+                                                                    ],
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          );
+                                                        });
+                                                  },
                                                 )
-                                              ],
-                                            ),
-                                          ),
-                                          );
-                                        });
-                                      }, 
-                                    )
-                                  : const Text(''))
-                              ],
-                            )
-                          ],)
-                        ),
-                    ],
-                  ),
-                )
-              ));
+                                              : const Text(''))
+                                    ],
+                                  )
+                                ],
+                              )),
+                            ],
+                          ),
+                        )));
+              }
             }
-          }
-        }
-    ),);
+          }),
+    );
   }
 }

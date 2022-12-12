@@ -1,4 +1,3 @@
-
 // Import flutter
 import 'package:flutter/material.dart';
 
@@ -8,7 +7,7 @@ import 'package:ruok/Tests/pages/mh_tests.dart';
 import 'package:ruok/Quotes/pages/quotes_page_main.dart';
 import 'package:ruok/Events/pages/events_page.dart';
 import 'package:ruok/Articles/pages/articles_page.dart';
-
+import 'package:ruok/stories/pages/stories.dart';
 
 class RuokDrawer extends StatelessWidget {
   const RuokDrawer({super.key});
@@ -32,16 +31,16 @@ class RuokDrawer extends StatelessWidget {
         ListTile(
             title: const Text('Stories'),
             onTap: () {
-              // Navigator.pushReplacement(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => )
-              // );
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const MyForumPage()));
             }),
         ListTile(
             title: const Text('Articles'),
             onTap: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => MyArticlesPage()));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MyArticlesPage()));
             }),
         ListTile(
             title: const Text('Events'),
@@ -60,10 +59,8 @@ class RuokDrawer extends StatelessWidget {
         ListTile(
             title: const Text('Tests'),
             onTap: () {
-              // Navigator.pushReplacement(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => const EventPage())
-              // );
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const TestPage()));
             }),
         ListTile(
             title: const Text('Quotes'),

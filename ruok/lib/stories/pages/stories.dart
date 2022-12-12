@@ -4,7 +4,7 @@ import 'package:ruok/stories/pages/stories_post.dart';
 import 'package:ruok/stories/pages/stories_detail.dart';
 import 'package:ruok/stories/pages/replies_fetch.dart';
 import 'package:ruok/stories/models/stories_models.dart';
-import 'package:ruok/stories/widgets/drawer.dart';
+import 'package:ruok/drawer.dart';
 import 'package:flutter/material.dart';
 
 class MyForumPage extends StatefulWidget {
@@ -26,14 +26,15 @@ class _MyForumState extends State<MyForumPage> {
       backgroundColor: black,
       appBar: AppBar(
         backgroundColor: purple,
-        title: const Text('STORIES',
+        title: const Text('Stories',
             style: TextStyle(
+              fontFamily: "Roboto Slab",
               color: Colors.white,
               fontSize: 25,
               fontWeight: FontWeight.bold,
             )),
       ),
-      drawer: buildDrawer(context),
+      drawer: RuokDrawer(),
       body: FutureBuilder(
         future: fetchMyForum(),
         builder: (context, AsyncSnapshot snapshot) {
