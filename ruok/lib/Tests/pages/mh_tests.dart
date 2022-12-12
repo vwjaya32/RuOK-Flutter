@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ruok/pages/events_page.dart';
 import 'package:ruok/pages/stories.dart';
 import 'package:ruok/main.dart';
 import 'package:ruok/drawer.dart';
@@ -48,21 +47,16 @@ class _TestPageState extends State<TestPage> {
   ];
   int _threecounter = 0;
 
-  String lonely = 'I feel happy to have so many friends here.';
-  List<String> oftenLonely = [
-    'I feel happy to have so many friends here.',
-    'Sometimes I feel alone but there are still some people I can rely on',
-    'Yes, I am alone and I do not trust other people'
-  ];
+  String lonely = 'No.';
+  List<String> oftenLonely = ['No.', 'Maybe.', 'Yes.'];
   int _fourcounter = 0;
 
-  String suicidal =
-      'I am happy with my journey and I want to live a healthy life.';
+  String suicidal = 'I am happy.';
   List<String> oftenSuicidal = [
-    'I am happy with my journey and I want to live a healthy life.',
-    'Even though my life is hard sometimes, I do not think about ending it.',
-    'I have had suicidal thoughts once in a while.',
-    ' Lately I really want to end my life.'
+    'I am happy.',
+    'I do not think about ending it.',
+    'Had suicidal thoughts once.',
+    'I want to end my life.'
   ];
   int _fivecounter = 0;
   int _totalcounter = 0;

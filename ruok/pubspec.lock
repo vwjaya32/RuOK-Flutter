@@ -88,13 +88,11 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-
   flutter_web_plugins:
     dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
-
   http:
     dependency: "direct main"
     description:
@@ -109,7 +107,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
-
   intl:
     dependency: "direct main"
     description:
@@ -124,7 +121,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
-
   lints:
     dependency: transitive
     description:
