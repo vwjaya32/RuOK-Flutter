@@ -101,7 +101,7 @@ class _EventDetailState extends State<EventList> {
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: Text('Kembali'))
+                                    child: const Text('Kembali', style: TextStyle(color: purple),))
                               ],
                             ),
                           ),
@@ -135,7 +135,9 @@ class _EventDetailState extends State<EventList> {
                               children: [
                                 Visibility(child: user.user.username != 'guest'
                                   ? TextButton(
-                                    child: snapshot.data![index].fields.is_joined ? Text('Unjoin') : Text('Join'),
+                                    child: snapshot.data![index].fields.is_joined 
+                                    ? const Text('Unjoin', style: TextStyle(color: purple),) 
+                                    : const Text('Join', style: TextStyle(color: purple),),
                                     onPressed: (){
                                       showDialog(
                                         context: context, 
@@ -167,13 +169,13 @@ class _EventDetailState extends State<EventList> {
                                                         TextButton(onPressed: () {
                                                           Navigator.pop(context);
                                                           }, 
-                                                          child: const Text('No')),
+                                                          child: const Text('No', style: TextStyle(color: purple),)),
                                                         TextButton(onPressed: () {
                                                           setState(() {
                                                             snapshot.data![index].fields.is_joined = !snapshot.data![index].fields.is_joined;
                                                           });
                                                           Navigator.pop(context);
-                                                        }, child: const Text('Yes'))
+                                                        }, child: const Text('Yes', style: TextStyle(color: purple),))
                                                       ],
                                                     )
                                                   ],
@@ -185,7 +187,7 @@ class _EventDetailState extends State<EventList> {
                                         });
                                       }, 
                                     )
-                                  : Text(''))
+                                  : const Text(''))
                               ],
                             )
                           ],)
