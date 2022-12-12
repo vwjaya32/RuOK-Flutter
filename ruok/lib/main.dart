@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ruok/Articles/utils/drawer.dart';
 
 // Import Authentication
 import 'package:provider/provider.dart';
@@ -9,13 +8,13 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:ruok/drawer.dart';
 
 // Import pages
-import 'package:ruok/forms/login_page.dart';
+import 'package:ruok/Auth/forms/login_form.dart';
 
 // Import provider
 import 'package:ruok/providers/user_provider.dart';
 
 // Import user
-import 'package:ruok/models/user_model.dart';
+import 'package:ruok/Auth/models/user_model.dart';
 
 void main() {
   runApp(const MyApp());

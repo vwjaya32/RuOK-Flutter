@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:ruok/models/quotes_model.dart';
+import 'package:ruok/Quotes/models/quotes_model.dart';
 
 Future<List<Holder>> fetchQuotes() async {
   var url = Uri.parse('https://ruok.up.railway.app/quotes/get_image');
