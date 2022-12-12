@@ -45,13 +45,13 @@ class EventPageState extends State<EventPage> {
                         onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const EventList()));
                       }, 
-                      child: const Text('List Of Events')),
+                      child: const Text('List Of Events', style: TextStyle(color: purple),)),
                       Visibility(child: user.user.username != 'guest'
                       ? TextButton(
                         onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const EventForm()));
                       }, 
-                      child: const Text('Add Events'))
+                      child: const Text('Add Events', style: TextStyle(color: purple),))
                       : const Text(''))
                     ],)
                   ]),)

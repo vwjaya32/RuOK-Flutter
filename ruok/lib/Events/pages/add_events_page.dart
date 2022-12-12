@@ -116,6 +116,7 @@ class _EventFormState extends State<EventForm> {
                     SizedBox(
                     height: 50,
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(primary: purple),
                     child: const Text('Select Date',
                     style: TextStyle(fontSize: 20),),
                     onPressed: () async {
@@ -205,7 +206,7 @@ class _EventFormState extends State<EventForm> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                      TextButton(
-                      child: const Text('Simpan'),
+                      child: const Text('Simpan', style: TextStyle(color: purple),),
                       onPressed: (){
                         if(_formKey.currentState!.validate()){
                           submit(context);
