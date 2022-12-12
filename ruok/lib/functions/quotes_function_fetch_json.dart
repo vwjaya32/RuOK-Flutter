@@ -4,7 +4,7 @@ import 'package:ruok/models/quotes_model.dart';
 
 Future<List<Holder>> fetchQuotes() async {
   var url = Uri.parse('https://ruok.up.railway.app/quotes/get_image');
-  print("check url");
+
   var response = await http.get(
     url,
     headers: {
@@ -19,12 +19,9 @@ Future<List<Holder>> fetchQuotes() async {
   // melakukan konversi data json menjadi object WatchList
   List<Holder> listQuotes = [];
   for(var data in datas["data"]) {
-    print("data in datas");
     if (data != null) {
-      print("Udah masuk if");
       listQuotes.add(Holder.fromJson(data));
     }
-    print("end for");
   }
 
   return listQuotes;
