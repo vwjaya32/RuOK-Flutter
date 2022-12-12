@@ -5,20 +5,20 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class MyForumFormPage extends StatefulWidget {
-  const MyForumFormPage({super.key});
+class MyRepliesFormPage extends StatefulWidget {
+  const MyRepliesFormPage({super.key});
 
   @override
-  State<MyForumFormPage> createState() => _ForumAddContentPageState();
+  State<MyRepliesFormPage> createState() => _RepliesAddContentPageState();
 }
 
-class ForumContent {
+class RepliesContent {
   late String author;
   late String title;
   late String dateTime;
   late String content;
 
-  ForumContent({
+  RepliesContent({
     required this.author,
     required this.title,
     required this.dateTime,
@@ -26,7 +26,7 @@ class ForumContent {
   });
 }
 
-class _ForumAddContentPageState extends State<MyForumFormPage> {
+class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
   final _formKey = GlobalKey<FormState>();
   static const purple = Color(0xFF613FE5);
   static const black = Color(0xFF09050D);
@@ -37,7 +37,7 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
   String? _dateTime;
   String? _content;
 
-  Future<ForumContent>? _futureAlbum;
+  Future<RepliesContent>? _futureAlbum;
   final TextEditingController _in = TextEditingController();
   final TextEditingController _in2 = TextEditingController();
   final TextEditingController _in3 = TextEditingController();
@@ -45,7 +45,8 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
 
   void submit(
       String author, String title, String dateTime, String content) async {
-    var url = Uri.parse('https://ruok.up.railway.app/forum/add-forum-flutter/');
+    var url =
+        Uri.parse('https://ruok.up.railway.app/Replies/add-Replies-flutter/');
 
     var map = <String, dynamic>{};
 
@@ -292,22 +293,6 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
               ],
             ),
           ),
-        ),
-      ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.fromLTRB(35, 10, 10, 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                backgroundColor: purple,
-                onPressed: () => Navigator.pop(context),
-                child: const Icon(Icons.arrow_back),
-              ),
-            ),
-          ],
         ),
       ),
     );

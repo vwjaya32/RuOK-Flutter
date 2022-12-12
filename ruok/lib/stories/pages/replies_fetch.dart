@@ -4,8 +4,9 @@ import 'package:http/http.dart' as http;
 
 List<MyReplies> listMyRepliesTotal = [];
 
-Future<List<MyReplies>> fetchMyReplies() async {
-  var url = Uri.parse('https://ruok.up.railway.app/forum/get-replies-flutter/');
+Future<List<MyReplies>> fetchMyReplies(int id) async {
+  var url =
+      Uri.parse('https://ruok.up.railway.app/forum/get-replies-flutter/$id');
   var response = await http.get(
     url,
   );
