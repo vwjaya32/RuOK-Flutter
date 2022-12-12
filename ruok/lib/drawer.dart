@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Pages import
 import 'package:ruok/main.dart';
-import 'package:ruok/pages/quotes_page_main.dart';
+import 'package:ruok/Quotes/quotes_page_main.dart';
 import 'package:ruok/Events/pages/events_page.dart';
 
 class RuokDrawer extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:ruok/models/user_model.dart';
+import 'package:ruok/Auth/models/user_model.dart';
 
 class UserProvider {
   User user;

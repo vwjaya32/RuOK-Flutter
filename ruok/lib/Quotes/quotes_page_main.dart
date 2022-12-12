@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Import functions
-import 'package:ruok/functions/quotes_function_fetch_json.dart';
+import 'package:ruok/Quotes/quotes_function_fetch_json.dart';
 
 // Import drawer
 import 'package:ruok/drawer.dart';
@@ -11,7 +11,7 @@ import 'package:ruok/drawer.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 // Import page
-import 'package:ruok/pages/quotes_page_perImage.dart';
+import 'package:ruok/Quotes/quotes_page_perImage.dart';
 
 class QuotesPage extends StatefulWidget {
   const QuotesPage({Key? key}) : super(key: key);
@@ -78,7 +78,15 @@ class _QuotesPageState extends State<QuotesPage> {
                               );
                             },
                             child: ClipRRect(
-                              child: Image.network(snapshot.data![index].fields.image),
+                              child: Image.network(
+                                  snapshot.data![index].fields.image,
+                                  loadingBuilder: (context, child, loadingProgress){
+                                    if (loadingProgress == null) return child;
+
+                                    return Transform.scale(
+                                        scale: 0.3,
+                                        child: const Center(child: CircularProgressIndicator()));
+                                  }),
                             ),
                           );
                         }),
