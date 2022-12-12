@@ -44,7 +44,10 @@ class _ArticlesFormState extends State<ArticlesForm> {
       backgroundColor: white,
       appBar: AppBar(
         backgroundColor: purple,
-        title: Text('Write Articles'),
+        title: Text(
+          'Write Articles',
+          style: TextStyle(fontFamily: "Roboto Slab"),
+        ),
       ),
       body: Form(
         key: _formKey,

@@ -32,7 +32,10 @@ class _MyArcticlesPageState extends State<MyArticlesPage> {
       drawer: RuokDrawer(),
       appBar: AppBar(
         backgroundColor: purple,
-        title: const Text('Articles'),
+        title: const Text(
+          'Articles',
+          style: TextStyle(fontFamily: "Roboto Slab"),
+        ),
       ),
       body: FutureBuilder(
         future: Articles.fetchArticles(),

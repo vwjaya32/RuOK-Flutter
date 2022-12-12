@@ -60,7 +60,10 @@ class _CommentsFormState extends State<CommentsForm> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Write Comments'),
+        title: Text(
+          'Write Comments',
+          style: TextStyle(fontFamily: "Roboto Slab"),
+        ),
         backgroundColor: purple,
       ),
       body: Form(
