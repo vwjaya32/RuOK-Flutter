@@ -41,25 +41,10 @@ class _TestPageState extends State<TestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Tests'),
-        ),
-        trailing: DropdownButton(
-                          value: kelasPBP,
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          items: listKelasPBP.map((String items) {
-                            return DropdownMenuItem(
-                              value: items,
-                              child: Text(items),
-                            );
-                          }).toList(),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              kelasPBP = newValue!;
-                            });
-                          },
-                        ),
-                      ),// This trailing comma makes auto-formatting nicer for build methods.
-        );
+      appBar: AppBar(
+        title: Text('Tests'),
+      ),
+      // This trailing comma makes auto-formatting nicer for build methods.
+    );
   }
 }
