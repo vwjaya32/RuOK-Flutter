@@ -18,7 +18,7 @@ class EventPageState extends State<EventPage> {
       appBar: AppBar(
         title: Text('Community Events'),
       ),
-      drawer: ruokDrawer(),
+      drawer: RuokDrawer(),
       body: Center(
         child: SingleChildScrollView(
           child: Container(

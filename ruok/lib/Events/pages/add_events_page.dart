@@ -148,7 +148,7 @@ class _EventFormState extends State<EventForm> {
                         },
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Jam tidak boleh kosong!';
+                            return 'Waktu tidak boleh kosong!';
                           }
                             return null;
                         },
@@ -178,7 +178,7 @@ class _EventFormState extends State<EventForm> {
                         },
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Jam tidak boleh kosong!';
+                            return 'Waktu tidak boleh kosong!';
                           }
                             return null;
                         },
