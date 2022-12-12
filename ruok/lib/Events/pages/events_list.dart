@@ -12,6 +12,7 @@ class EventList extends StatefulWidget {
 }
 
 class _EventDetailState extends State<EventList> {
+  static const purple = Color(0xFF613FE5);
   late Future<List<EventItem>> eventlist;
 
   @override
@@ -25,7 +26,8 @@ class _EventDetailState extends State<EventList> {
     final user = context.watch<UserProvider>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('List Of Events'),
+        backgroundColor: purple,
+        title: const Text('List Of Events'),
       ),
       body: FutureBuilder(
         future: eventlist,
@@ -99,7 +101,7 @@ class _EventDetailState extends State<EventList> {
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: Text('Kembali'))
+                                    child: const Text('Kembali', style: TextStyle(color: purple),))
                               ],
                             ),
                           ),
@@ -128,62 +130,68 @@ class _EventDetailState extends State<EventList> {
                                 const Text('Event Date: '),
                                 Text('${snapshot.data![index].fields.date}'),
                               ],
+                            ),
+                            Row(
+                              children: [
+                                Visibility(child: user.user.username != 'guest'
+                                  ? TextButton(
+                                    child: snapshot.data![index].fields.is_joined 
+                                    ? const Text('Unjoin', style: TextStyle(color: purple),) 
+                                    : const Text('Join', style: TextStyle(color: purple),),
+                                    onPressed: (){
+                                      showDialog(
+                                        context: context, 
+                                        builder: (context){
+                                          return Dialog(
+                                            shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                          elevation: 15,
+                                          child: Container(
+                                            child: ListView(
+                                              padding: const EdgeInsets.only(
+                                              top: 20, bottom: 20),
+                                              shrinkWrap: true,
+                                              children: <Widget>[
+                                                Column(
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: const [
+                                                        Text('Are You Sure?', style: TextStyle(
+                                                          fontSize: 18.0,
+                                                          fontWeight: FontWeight.bold,)),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: [
+                                                        TextButton(onPressed: () {
+                                                          Navigator.pop(context);
+                                                          }, 
+                                                          child: const Text('No', style: TextStyle(color: purple),)),
+                                                        TextButton(onPressed: () {
+                                                          setState(() {
+                                                            snapshot.data![index].fields.is_joined = !snapshot.data![index].fields.is_joined;
+                                                          });
+                                                          Navigator.pop(context);
+                                                        }, child: const Text('Yes', style: TextStyle(color: purple),))
+                                                      ],
+                                                    )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          );
+                                        });
+                                      }, 
+                                    )
+                                  : const Text(''))
+                              ],
                             )
                           ],)
                         ),
-                      Visibility(child: user.user.username != 'guest'
-                      ? TextButton(
-                        child: snapshot.data![index].fields.is_joined ? Text('Unjoin') : Text('Join'),
-                        onPressed: (){
-                          showDialog(
-                            context: context, 
-                            builder: (context){
-                              return Dialog(
-                                shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              elevation: 15,
-                              child: Container(
-                                child: ListView(
-                                  padding: const EdgeInsets.only(
-                                  top: 20, bottom: 20),
-                                  shrinkWrap: true,
-                                  children: <Widget>[
-                                    Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: const [
-                                            Text('Are You Sure?', style: TextStyle(
-                                              fontSize: 18.0,
-                                              fontWeight: FontWeight.bold,)),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            TextButton(onPressed: () {
-                                              Navigator.pop(context);
-                                              }, 
-                                              child: const Text('No')),
-                                            TextButton(onPressed: () {
-                                              setState(() {
-                                                snapshot.data![index].fields.is_joined = !snapshot.data![index].fields.is_joined;
-                                              });
-                                              Navigator.pop(context);
-                                            }, child: const Text('Yes'))
-                                          ],
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                              );
-                            });
-                          }, 
-                        )
-                      : Text(''))
                     ],
                   ),
                 )
