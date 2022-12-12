@@ -11,45 +11,59 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
+  String _results = "Please pick an answer for every questions first.";
+  void _resultcount() {
+    setState(() {
+      if (_totalcounter < 5) {
+        _results = "Please pick an answer for every questions first.";
+      } else if (_totalcounter <= 8) {
+        _results =
+            "Currently you are in a good mental condition. Keep your physical and spiritual health by exercising, have faith and praying, and socializing in a healthy manner.";
+      } else if (_totalcounter <= 13) {
+        _results =
+            "You are indicated to be in a unhappy state. Sharing your sadness with friends or family can help ease the sadness you are experiencing.";
+      } else {
+        _results =
+            "You are indicated to be in a very sad state. Talk to your closest friends or family, contact your psychiatrist or psychologist to help you.";
+      }
+    });
+  }
+
   final _formKey = GlobalKey<FormState>();
-  String sad = 'Pick One';
-  List<String> oftenSad = ['Pick One', 'No', 'Maybe', 'Yes'];
-  String tired = 'Pick One';
-  List<String> oftenTired = ['Pick One', 'No', 'Maybe', 'Yes'];
-  String cry = 'Pick One';
+  String sad = 'No';
+  List<String> oftenSad = ['No', 'Maybe', 'Yes'];
+  int _onecounter = 0;
+
+  String tired = 'No';
+  List<String> oftenTired = ['No', 'Maybe', 'Yes'];
+  int _twocounter = 0;
+
+  String cry = 'Less than 3 times';
   List<String> oftenCry = [
-    'Pick One',
     'Less than 3 times',
     '3-5 times',
     'More than 5 times',
     'Nearly every day'
   ];
-  String lonely = 'Pick One';
+  int _threecounter = 0;
+
+  String lonely = 'I feel happy to have so many friends here.';
   List<String> oftenLonely = [
-    'Pick One',
     'I feel happy to have so many friends here.',
     'Sometimes I feel alone but there are still some people I can rely on',
     'Yes, I am alone and I do not trust other people'
   ];
-  String suicidal = 'Pick One';
+  int _fourcounter = 0;
+
+  String suicidal =
+      'I am happy with my journey and I want to live a healthy life.';
   List<String> oftenSuicidal = [
-    'Pick One',
     'I am happy with my journey and I want to live a healthy life.',
     'Even though my life is hard sometimes, I do not think about ending it.',
     'I have had suicidal thoughts once in a while.',
     ' Lately I really want to end my life.'
   ];
-  int _donecounter = 0;
-  int _onecounter = 0;
-  bool _onedone = false;
-  int _twocounter = 0;
-  bool _twodone = false;
-  int _threecounter = 0;
-  bool _threedone = false;
-  int _fourcounter = 0;
-  bool _fourdone = false;
   int _fivecounter = 0;
-  bool _fivedone = false;
   int _totalcounter = 0;
 
   // void _incrementCounter() {
@@ -73,10 +87,6 @@ class _TestPageState extends State<TestPage> {
             child: Text(
                 'All : $_totalcounter , $_onecounter , $_twocounter, $_threecounter, $_fourcounter, $_fivecounter'),
           ),
-          Center(
-            child: Text(
-                'Questions Answered : $_donecounter $_onedone $_twodone $_threedone $_fourdone $_fivedone'),
-          ),
           ListTile(
             title: const Text('Do you often feel sad lately?',
                 style: TextStyle(color: Colors.green)),
@@ -92,23 +102,16 @@ class _TestPageState extends State<TestPage> {
               onChanged: (String? newValue) {
                 setState(() {
                   sad = newValue!;
-                  if (newValue != oftenSad[0]) {
-                    if (_onedone == false) {
-                      _onedone = true;
+                  for (var i = 0; i < oftenSad.length; i++) {
+                    if (newValue == oftenSad[i]) {
+                      _onecounter = i + 1;
+                      _totalcounter = _onecounter +
+                          _twocounter +
+                          _threecounter +
+                          _fourcounter +
+                          _fivecounter;
+                      break;
                     }
-                    for (var i = 0; i < oftenSad.length; i++) {
-                      if (newValue != oftenSad[i]) {
-                        _onecounter = i;
-                        _totalcounter = _onecounter +
-                            _twocounter +
-                            _threecounter +
-                            _fourcounter +
-                            _fivecounter;
-                        break;
-                      }
-                    }
-                  } else {
-                    _onedone = false;
                   }
                 });
               },
@@ -130,23 +133,16 @@ class _TestPageState extends State<TestPage> {
               onChanged: (String? newValue) {
                 setState(() {
                   tired = newValue!;
-                  if (newValue != oftenTired[0]) {
-                    for (var i = 0; i < oftenTired.length; i++) {
-                      if (newValue != oftenTired[i]) {
-                        _twocounter = i;
-                        if (_twodone == false) {
-                          _twodone = true;
-                        }
-                        _totalcounter = _onecounter +
-                            _twocounter +
-                            _threecounter +
-                            _fourcounter +
-                            _fivecounter;
-                        break;
-                      }
+                  for (var i = 0; i < oftenTired.length; i++) {
+                    if (newValue == oftenTired[i]) {
+                      _twocounter = i + 1;
+                      _totalcounter = _onecounter +
+                          _twocounter +
+                          _threecounter +
+                          _fourcounter +
+                          _fivecounter;
+                      break;
                     }
-                  } else {
-                    _twodone = false;
                   }
                 });
               },
@@ -168,23 +164,16 @@ class _TestPageState extends State<TestPage> {
               onChanged: (String? newValue) {
                 setState(() {
                   cry = newValue!;
-                  if (newValue != oftenCry[0]) {
-                    for (var i = 0; i < oftenCry.length; i++) {
-                      if (newValue != oftenCry[i]) {
-                        _threecounter = i;
-                        if (_threedone == false) {
-                          _threedone = true;
-                        }
-                        _totalcounter = _onecounter +
-                            _twocounter +
-                            _threecounter +
-                            _fourcounter +
-                            _fivecounter;
-                        break;
-                      }
+                  for (var i = 0; i < oftenCry.length; i++) {
+                    if (newValue == oftenCry[i]) {
+                      _threecounter = i + 1;
+                      _totalcounter = _onecounter +
+                          _twocounter +
+                          _threecounter +
+                          _fourcounter +
+                          _fivecounter;
+                      break;
                     }
-                  } else {
-                    _threedone = false;
                   }
                 });
               },
@@ -205,23 +194,17 @@ class _TestPageState extends State<TestPage> {
               onChanged: (String? newValue) {
                 setState(() {
                   lonely = newValue!;
-                  if (newValue != oftenLonely[0]) {
-                    for (var i = 0; i < oftenLonely.length; i++) {
-                      if (newValue != oftenLonely[i]) {
-                        _fourcounter = i;
-                        if (_fourdone == false) {
-                          _fourdone = true;
-                        }
-                        _totalcounter = _onecounter +
-                            _twocounter +
-                            _threecounter +
-                            _fourcounter +
-                            _fivecounter;
-                        break;
-                      }
+
+                  for (var i = 0; i < oftenLonely.length; i++) {
+                    if (newValue == oftenLonely[i]) {
+                      _fourcounter = i + 1;
+                      _totalcounter = _onecounter +
+                          _twocounter +
+                          _threecounter +
+                          _fourcounter +
+                          _fivecounter;
+                      break;
                     }
-                  } else {
-                    _fourdone = false;
                   }
                 });
               },
@@ -242,68 +225,46 @@ class _TestPageState extends State<TestPage> {
               onChanged: (String? newValue) {
                 setState(() {
                   suicidal = newValue!;
-                  if (newValue != oftenSuicidal[0]) {
-                    for (var i = 0; i < oftenSuicidal.length; i++) {
-                      if (newValue != oftenSuicidal[i]) {
-                        _fivecounter = i;
-                        if (_fivedone == false) {
-                          _fivedone = true;
-                        }
-                        _totalcounter = _onecounter +
-                            _twocounter +
-                            _threecounter +
-                            _fourcounter +
-                            _fivecounter;
-                        break;
-                      }
+
+                  for (var i = 0; i < oftenSuicidal.length; i++) {
+                    if (newValue == oftenSuicidal[i]) {
+                      _fivecounter = i + 1;
+                      _totalcounter = _onecounter +
+                          _twocounter +
+                          _threecounter +
+                          _fourcounter +
+                          _fivecounter;
+                      break;
                     }
-                  } else {
-                    _fivedone = false;
                   }
                 });
               },
             ),
           ),
-          TextButton(
-              onPressed: () {
-                _totalcounter = _onecounter +
-                    _twocounter +
-                    _threecounter +
-                    _fourcounter +
-                    _fivecounter;
-              },
-              child: Text(
-                'Jiancooooog',
-                style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    backgroundColor: Colors.purple),
-              )),
+          Container(
+            height: 100,
+            width: 200,
+            child: Text(
+              'Press The Button Below to   Check your Result!',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          Container(
+            height: 100,
+            width: 200,
+            child: Text('$_results'),
+          ),
+          Container(
+            height: 50,
+            width: 200,
+          ),
           FloatingActionButton(
             onPressed: () {
-              _totalcounter = _onecounter +
-                  _twocounter +
-                  _threecounter +
-                  _fourcounter +
-                  _fivecounter;
-
-              if (_onecounter == true) {
-                _donecounter++;
-              }
-              if (_twocounter == true) {
-                _donecounter++;
-              }
-              if (_threecounter == true) {
-                _donecounter++;
-              }
-              if (_fourcounter == true) {
-                _donecounter++;
-              }
-              if (_fivecounter == true) {
-                _donecounter++;
-              }
+              _resultcount();
             },
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+              borderRadius: BorderRadius.all(Radius.circular(15.0)),
+            ),
             hoverColor: Color.fromARGB(255, 219, 71, 7),
           ),
         ],
