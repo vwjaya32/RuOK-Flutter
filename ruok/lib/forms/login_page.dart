@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: [
               const Padding(
-                padding: EdgeInsets.only(top: 30),
+                padding: EdgeInsets.only(top: 30, bottom: 15),
                 child: Text(
                     "Login",
                     style: TextStyle(
@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               // Username
               Padding(
-                padding: const EdgeInsets.all(15),
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
                 child: TextFormField(
                   decoration: InputDecoration(
                     labelText: "Username",
@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               // Password
               Padding(
-                padding: const EdgeInsets.all(15),
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
                 child: TextFormField(
                   obscureText: !viewPassword,
                   enableSuggestions: false,
