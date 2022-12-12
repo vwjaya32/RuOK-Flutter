@@ -43,33 +43,25 @@ class Fields {
     @required this.content,
   });
 
-  Author? author;
+  String? author;
   String? title;
   DateTime? dateTime;
   String? content;
 
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
-        author: authorValues.map[json["author"]],
+        author: json["author"],
         title: json["title"],
         dateTime: DateTime.parse(json["date_time"]),
         content: json["content"],
       );
 
   Map<String, dynamic> toJson() => {
-        "author": authorValues.reverse[author],
+        "author": author,
         "title": title,
         "date_time": dateTime?.toIso8601String(),
         "content": content,
       };
 }
-
-enum Author { RAFITO_HUMAM, AFAW, BJHBHB }
-
-final authorValues = EnumValues({
-  "afaw": Author.AFAW,
-  "bjhbhb": Author.BJHBHB,
-  "Rafito Humam": Author.RAFITO_HUMAM
-});
 
 enum Model { FORUM_POSTS }
 
