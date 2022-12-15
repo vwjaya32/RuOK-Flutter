@@ -6,6 +6,7 @@ import 'package:ruok/main.dart';
 import 'package:ruok/Tests/pages/mh_tests.dart';
 import 'package:ruok/Quotes/pages/quotes_page_main.dart';
 import 'package:ruok/Events/pages/events_page.dart';
+import 'package:ruok/Catalogue/page/catalogue_page.dart';
 import 'package:ruok/Articles/pages/articles_page.dart';
 import 'package:ruok/stories/pages/stories.dart';
 
@@ -51,10 +52,8 @@ class RuokDrawer extends StatelessWidget {
         ListTile(
             title: const Text('Catalogue'),
             onTap: () {
-              // Navigator.pushReplacement(
-              //     context,
-              //     MaterialPageRoute(builder: (context) => )
-              // );
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const CataloguePage()));
             }),
         ListTile(
             title: const Text('Tests'),
