@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Image.network(
-                "https://o.remove.bg/downloads/ae44c28d-9c09-4fb5-a806-8d38b970c3ec/cartoon-purple-monster-with-shocked-expression-illustration_6460-781-removebg-preview.png",
+                "https://cdn.discordapp.com/attachments/902134320880287754/1053311245228458024/image_2022-12-16_210140875-removebg-preview.png",
                 height: 400,
               ),
             ),

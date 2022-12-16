@@ -1,9 +1,9 @@
-import 'package:ruok/stories/models/replies_models.dart';
-import 'package:ruok/stories/pages/stories_fetch.dart';
-import 'package:ruok/stories/pages/replies_fetch.dart';
-import 'package:ruok/stories/pages/replies_detail.dart';
-import 'package:ruok/stories/pages/replies_post.dart';
-import 'package:ruok/stories/models/stories_models.dart';
+import 'package:ruok/Stories/models/replies_models.dart';
+import 'package:ruok/Stories/pages/stories_fetch.dart';
+import 'package:ruok/Stories/pages/replies_fetch.dart';
+import 'package:ruok/Stories/pages/replies_detail.dart';
+import 'package:ruok/Stories/pages/replies_post.dart';
+import 'package:ruok/Stories/models/stories_models.dart';
 import 'package:ruok/drawer.dart';
 import 'package:flutter/material.dart';
 
