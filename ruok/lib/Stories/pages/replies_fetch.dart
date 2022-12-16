@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:ruok/stories/models/replies_models.dart';
+import 'package:ruok/Stories/models/replies_models.dart';
 import 'package:http/http.dart' as http;
 
 List<MyReplies> listMyRepliesTotal = [];

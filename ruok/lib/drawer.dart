@@ -15,7 +15,7 @@ import 'package:ruok/Quotes/pages/quotes_page_main.dart';
 import 'package:ruok/Events/pages/events_page.dart';
 import 'package:ruok/Catalogue/page/catalogue_page.dart';
 import 'package:ruok/Articles/pages/articles_page.dart';
-import 'package:ruok/stories/pages/stories.dart';
+import 'package:ruok/Stories/pages/stories.dart';
 
 class RuokDrawer extends StatelessWidget {
   const RuokDrawer({super.key});
