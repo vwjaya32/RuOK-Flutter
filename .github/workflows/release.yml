@@ -52,5 +52,5 @@ jobs:
           artifacts: "build/app/outputs/flutter-apk/*.apk"
           body: 'Published at ${{ steps.date.outputs.date }}'
           name: 'v${{ steps.version.outputs.version }}'
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.version.outputs.version }}
