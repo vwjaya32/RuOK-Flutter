@@ -13,6 +13,7 @@
 
 - [Deskripsi](#ruok) 📱
 - [Link](#link-aplikasi) 🌍
+- [User](#user-role) 😎
 - [Modul](#modul) 🎯
 - [Alur Integrasi](#alur-integrasi) 🕊
 
@@ -26,11 +27,15 @@ Sebagai tindak lanjut dari usaha kami dalam membantu menyelesaikan masalah menta
 
 ### **Link Aplikasi**
 👇👇👇👇👇👇👇
-[]()  
+[AppCenter release](https://install.appcenter.ms/orgs/ruok/apps/ruok/distribution_groups/public)  
 [GitHub release](https://github.com/vwjaya32/RuOK-Flutter/releases)  
 <br>
 <br>
 
+### **User Role**
+_User Role_ pada RuOK _mobile_ memiliki kesamaan dengan _User Role_ yang berjalan di versi _website_.  
+Perbedaannya, pada RuOK _mobile_ _user_ yang tidak _login_ akan menggunakan _dummy user_ bernama 'guest'.
+Dengan demikian, dalam versi _mobile_, kata _User_ mengacu pada _user_ yang sudah _login_.
 
 ### **Modul**
 Modul yang akan diimplementasikan dalam aplikasi _mobile_ yang akan kami buat.<br> 
@@ -60,3 +65,21 @@ Pada modul ini, pengguna dapat mengunggah gambar berisi kutipan motivasi yang da
 
 ### **Alur integrasi**
 Kami akan melakukan integrasi menghubungkan isi JSON yang ada di proyek heroku dengan cara membuat model flutter yang serupa dengan model django. Kami akan mengambil data dari url json yang dimiliki heroku dan mengaktifkan dependency HTTP serta menampilkan data dengan widget FutureBuilder.
+
+### **PATCH**
+By Vinsen (2106637776):
+1. General
+   a. Menambahkan fitur Logout (Termasuk mengonfigurasi ulang fitur Login)
+   b. Release App ke GitHub
+   c. Release App ke App Center
+   d. Update README (untuk badge dan keterangan role)
+   e. Menghapus file-file yang tidak terpakai
+2. Quotes
+   a. Dalam form pengunggahan, menambahkan fitur image preview
+   b. Dalam page untuk setiap quotes, menambahkan fitur delete
+   c. Mengimplementasikan authorization:
+      1) guest tidak bisa menghapus dan mengunggah gambar
+      2) User dapat menghapus gambar yang diunggah olehnya
+      3) admin dapat menghapus gambar yang telah diunggah oleh user
+   d. Update UI
+
