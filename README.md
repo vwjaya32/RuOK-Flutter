@@ -26,7 +26,7 @@ Sebagai tindak lanjut dari usaha kami dalam membantu menyelesaikan masalah menta
 <br>
 
 ### **Link Aplikasi**
-👇👇👇👇👇👇👇
+👇👇👇👇👇👇👇<br>
 [AppCenter release](https://install.appcenter.ms/orgs/ruok/apps/ruok/distribution_groups/public)  
 [GitHub release](https://github.com/vwjaya32/RuOK-Flutter/releases)  
 <br>
