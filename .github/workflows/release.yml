@@ -50,7 +50,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          artifacts: "build/app/outputs/flutter-apk/*.apk"
+          artifacts: "ruok/build/app/outputs/flutter-apk/*.apk"
           body: 'Published at ${{ steps.date.outputs.date }}'
           name: 'v${{ steps.version.outputs.version }}'
           token: ${{ secrets.GITHUB_TOKEN }}
