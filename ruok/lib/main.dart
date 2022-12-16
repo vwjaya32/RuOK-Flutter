@@ -126,9 +126,12 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
 
           children: [
-            Image.network(
-              "https://img.freepik.com/premium-vector/cartoon-purple-monster-with-shocked-expression-illustration_6460-781.jpg?w=2000",
-              height: 500,
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Image.network(
+                "https://o.remove.bg/downloads/ae44c28d-9c09-4fb5-a806-8d38b970c3ec/cartoon-purple-monster-with-shocked-expression-illustration_6460-781-removebg-preview.png",
+                height: 400,
+              ),
             ),
             const Text(
               "You are now login as",
