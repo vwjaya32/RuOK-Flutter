@@ -52,5 +52,5 @@ jobs:
           appName: RuOK/RuOK
           token: ${{ secrets.TOKEN_APP_CENTER }}
           group: Public
-          file: ruok/build/app/outputs/flutter-apk/*.apk
+          file: ruok/build/app/outputs/flutter-apk/app.apk
           debug: false
