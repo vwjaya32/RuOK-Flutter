@@ -68,18 +68,18 @@ Kami akan melakukan integrasi menghubungkan isi JSON yang ada di proyek heroku d
 
 ### **PATCH**
 By Vinsen (2106637776):
-1. General
-   a. Menambahkan fitur Logout (Termasuk mengonfigurasi ulang fitur Login)
-   b. Release App ke GitHub
-   c. Release App ke App Center
-   d. Update README (untuk badge dan keterangan role)
-   e. Menghapus file-file yang tidak terpakai
-2. Quotes
-   a. Dalam form pengunggahan, menambahkan fitur image preview
-   b. Dalam page untuk setiap quotes, menambahkan fitur delete
-   c. Mengimplementasikan authorization:
-      1) guest tidak bisa menghapus dan mengunggah gambar
-      2) User dapat menghapus gambar yang diunggah olehnya
-      3) admin dapat menghapus gambar yang telah diunggah oleh user
-   d. Update UI
+1. General  
+   a. Menambahkan fitur Logout (Termasuk mengonfigurasi ulang fitur Login)  
+   b. Release App ke GitHub  
+   c. Release App ke App Center  
+   d. Update README (untuk badge dan keterangan role)  
+   e. Menghapus file-file yang tidak terpakai  
+2. Quotes  
+   a. Dalam form pengunggahan, menambahkan fitur image preview  
+   b. Dalam page untuk setiap quotes, menambahkan fitur delete  
+   c. Mengimplementasikan authorization:  
+      1) guest tidak bisa menghapus dan mengunggah gambar  
+      2) User dapat menghapus gambar yang diunggah olehnya  
+      3) admin dapat menghapus gambar yang telah diunggah oleh user  
+   d. Update UI  
 
