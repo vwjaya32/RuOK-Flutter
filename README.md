@@ -1,3 +1,6 @@
+![GitHubRelease](https://github.com/vwjaya32/RuOK-Flutter/actions/workflows/release.yml/badge.svg)  
+![AppCenterRelease](https://github.com/vwjaya32/RuOK-Flutter/actions/workflows/app-center-release.yml/badge.svg)  
+
 # Pemrograman Berbasis Platform 2022/2023
 
 ## Kelompok E-10 👨‍👨‍👦‍👦  
@@ -22,8 +25,9 @@ Sebagai tindak lanjut dari usaha kami dalam membantu menyelesaikan masalah menta
 <br>
 
 ### **Link Aplikasi**
-👇👇👇👇👇👇👇  
-MASIH DALAM PENGEMBANGAN
+👇👇👇👇👇👇👇
+[]()  
+[GitHub release](https://github.com/vwjaya32/RuOK-Flutter/releases)  
 <br>
 <br>
 
