@@ -83,3 +83,16 @@ By Vinsen (2106637776):
       3) admin dapat menghapus gambar yang telah diunggah oleh user  
    d. Update UI  
 
+By Thobyas (2106650001)
+Pada Catalogue
+a. Buy button sudah berfungsi, akan keluar form pembelian.
+b. User yang ingin membeli di Catalogue harus login terlebih dahulu agar buy button berfungsi, jika belum login, hanya bisa melihat produk-produknya saja.
+
+
+By Balqis (2106751184):
+Pada Tests
+1. Perbaikan UI
+2. Page redirect ke result
+3. Perbedaan otorisasi untuk guest dan anggota biasa (anggota biasa bisa simpan)
+4. Mh save untuk metode post, fetch untuk get
+5. Pemunculan dialog untuk konfirmasi simpan.
