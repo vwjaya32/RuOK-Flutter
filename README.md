@@ -82,12 +82,13 @@ By Vinsen (2106637776):
       2) User dapat menghapus gambar yang diunggah olehnya  
       3) admin dapat menghapus gambar yang telah diunggah oleh user  
    d. Update UI  
+<br>
 
 By Thobyas (2106650001)  
 Pada Catalogue  
-a. Buy button sudah berfungsi, akan keluar form pembelian.  
-b. User yang ingin membeli di Catalogue harus login terlebih dahulu agar buy button berfungsi, jika belum login, hanya bisa melihat produk-produknya saja.  
-
+1. Buy button sudah berfungsi, akan keluar form pembelian.  
+2. User yang ingin membeli di Catalogue harus login terlebih dahulu agar buy button berfungsi, jika belum login, hanya bisa melihat produk-produknya saja.  
+<br>
 
 By Balqis (2106751184):  
 Pada Tests  
@@ -96,3 +97,11 @@ Pada Tests
 3. Perbedaan otorisasi untuk guest dan anggota biasa (anggota biasa bisa simpan)  
 4. Mh save untuk metode post, fetch untuk get  
 5. Pemunculan dialog untuk konfirmasi simpan.  
+<br>
+
+By Rafito Humam (2106633626)  
+Pada Stories  
+1. Penambahan fitur POST and GET dari Replies (balasan) terhadap setiap Stories.  
+2. Diferesiansi autorisasi, guest tidak bisa melihat atau menekan tombol post Stories, hanya user yang terdaftar yang bisa.  
+3. Refactor dari folder dan file.  
+4. Perbaikan UI dengan menambahkan container dan warna yang meningkatkan readibility.  
