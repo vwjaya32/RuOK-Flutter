@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:ruok/main.dart';
 import 'package:ruok/drawer.dart';
 import 'package:ruok/Tests/utils/fetch_test.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:ruok/providers/user_provider.dart';
+import 'package:ruok/Auth/models/user_model.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -10,7 +14,11 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
-  String _results = "Halo! Please pick an answer for every questions first.";
+  static const purple = Color(0xFF613FE5);
+  static const black = Color(0xFF09050D);
+  static const yellow = Color(0xFFFFCA0C);
+  static const red = Color(0xFFDE1C1C);
+  String _results = "Please pick an answer for every questions first.";
   void _resultcount() {
     setState(() {
       if (_totalcounter < 5) {
@@ -46,22 +54,12 @@ class _TestPageState extends State<TestPage> {
   ];
   int _threecounter = 0;
 
-  String lonely = 'I feel happy to have so many friends here.';
-  List<String> oftenLonely = [
-    'I feel happy to have so many friends here.',
-    'Sometimes I feel alone but there are still some people I can rely on',
-    'Yes, I am alone and I do not trust other people'
-  ];
+  String lonely = 'No.';
+  List<String> oftenLonely = ['No.', 'Sometimes.', 'Yes.'];
   int _fourcounter = 0;
 
-  String suicidal =
-      'I am happy with my journey and I want to live a healthy life.';
-  List<String> oftenSuicidal = [
-    'I am happy with my journey and I want to live a healthy life.',
-    'Even though my life is hard sometimes, I do not think about ending it.',
-    'I have had suicidal thoughts once in a while.',
-    ' Lately I really want to end my life.'
-  ];
+  String suicidal = 'Never.';
+  List<String> oftenSuicidal = ['Never.', 'Rarely.', 'Sometimes.', 'Yes.'];
   int _fivecounter = 0;
   int _totalcounter = 0;
 
@@ -69,39 +67,63 @@ class _TestPageState extends State<TestPage> {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<UserProvider>();
     return Scaffold(
         appBar: AppBar(
-          title: Text('Tests'),
+          title: Text(
+            'Mental Health Tests for ${user.user.username}!',
+            style: TextStyle(fontFamily: "Roboto Slab"),
+          ),
+          backgroundColor: purple,
         ),
         drawer: const RuokDrawer(),
         body: SingleChildScrollView(
           child: Column(
             children: [
+              Container(
+                height: 25,
+                width: 25,
+              ),
               Center(
                   child: Text('Quick Mental Health Test',
-                      style: TextStyle(fontWeight: FontWeight.bold))),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Roboto Slab"))),
               Center(
                   child: Text(
-                      'Spend just 3 minutes of taking this test and we will quickly calculate your mental health state.')),
+                '${user.user.username}, Spend just 3 minutes of taking this test and we will quickly calculate your mental health state.',
+                style: TextStyle(
+                  fontFamily: "Roboto Slab",
+                ),
+                textAlign: TextAlign.center,
+              )),
+              SizedBox(height: 10),
               Column(children: const [
                 Center(
                     child: Text('Caution!',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 141, 18, 10)))),
+                            color: red,
+                            fontFamily: "Roboto Slab"))),
                 Center(
                     child: Text(
-                        'This test does not serve as a real diagnostic tool, but can be used to picture of the condition you are currently experiencing. ')),
+                        'This test does not serve as a real diagnostic tool, but can be used to picture of the condition you are currently experiencing. ',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontFamily: "Roboto Slab"))),
               ]),
               Center(
                   child: Text(
-                      'Use this test wisely, answer honestly according to your current conditions. Please consult your psychologist or psychiatrist if needed.')),
+                      'Use this test wisely, answer honestly according to your current conditions. Please consult your psychologist or psychiatrist if needed.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontFamily: "Roboto Slab"))),
               ListTile(
                 title: const Text('Do you often feel sad lately?',
                     style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                    )),
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Roboto Slab")),
                 trailing: DropdownButton(
                   value: sad,
                   icon: const Icon(Icons.keyboard_arrow_down),
@@ -133,9 +155,9 @@ class _TestPageState extends State<TestPage> {
                 title: const Text(
                     'In this one week, do you feel mentally tired for more than three days?',
                     style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                    )),
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Roboto Slab")),
                 trailing: DropdownButton(
                   value: tired,
                   icon: const Icon(Icons.keyboard_arrow_down),
@@ -167,9 +189,9 @@ class _TestPageState extends State<TestPage> {
                 title: const Text(
                     'How many times have you cried or been silent in the past two weeks?',
                     style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                    )),
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Roboto Slab")),
                 trailing: DropdownButton(
                   value: cry,
                   icon: const Icon(Icons.keyboard_arrow_down),
@@ -200,9 +222,9 @@ class _TestPageState extends State<TestPage> {
               ListTile(
                 title: const Text('Do you feel alone in this world?',
                     style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                    )),
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Roboto Slab")),
                 trailing: DropdownButton(
                   value: lonely,
                   icon: const Icon(Icons.keyboard_arrow_down),
@@ -234,9 +256,9 @@ class _TestPageState extends State<TestPage> {
               ListTile(
                 title: const Text('Are you thinking about committing suicide?',
                     style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                    )),
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Roboto Slab")),
                 trailing: DropdownButton(
                   value: suicidal,
                   icon: const Icon(Icons.keyboard_arrow_down),
@@ -265,39 +287,61 @@ class _TestPageState extends State<TestPage> {
                   },
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
               ListTile(
                   title: const Text(
-                    'Tests Results',
+                    'Check My Past Test Results',
                     textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontFamily: "Roboto Slab", color: Colors.white),
                   ),
+                  tileColor: purple,
+                  selectedTileColor: yellow,
                   onTap: () {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const FetchRestsPage()));
                   }),
+              SizedBox(
+                height: 25,
+              ),
               Container(
-                height: 50,
-                width: 200,
                 child: Text(
-                  'Press The Button Below to check your Result!',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  'Press The Yellow Button Below to Check Your Result!',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: purple,
+                    fontFamily: "Roboto Slab",
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),
+              SizedBox(
+                height: 10,
+              ),
               Container(
-                height: 50,
-                width: 200,
                 child: Text(
                   '$_totalcounter',
+                  style: TextStyle(
+                    fontFamily: "Roboto Slab",
+                  ),
                   textAlign: TextAlign.center,
                 ),
+              ),
+              SizedBox(
+                height: 5,
               ),
               Container(
                 height: 100,
                 width: 400,
                 child: Text(
                   '$_results',
+                  style: TextStyle(
+                    fontFamily: "Roboto Slab",
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -309,10 +353,12 @@ class _TestPageState extends State<TestPage> {
                 onPressed: () {
                   _resultcount();
                 },
+                backgroundColor: yellow,
+                foregroundColor: yellow,
+                hoverColor: red,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15.0)),
                 ),
-                hoverColor: Color.fromARGB(255, 219, 71, 7),
               ),
             ],
           ),
