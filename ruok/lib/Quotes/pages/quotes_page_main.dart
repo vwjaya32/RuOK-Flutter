@@ -125,7 +125,7 @@ class _QuotesPageState extends State<QuotesPage> {
                                               color: Colors.amber,
                                               alignment: Alignment.center,
                                               child: const Text(
-                                                'Invalid Image! :(
+                                                'Invalid Image! :(',
                                                 style: TextStyle(
                                                   fontSize: 12,
                                                   fontFamily: "Roboto Slab",
