@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ruok/stories/pages/stories.dart';
-import 'package:ruok/stories/widgets/drawer.dart';
 
 // Import Authentication
 import 'package:provider/provider.dart';
@@ -127,9 +125,12 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
 
           children: [
-            Image.network(
-              "https://img.freepik.com/premium-vector/cartoon-purple-monster-with-shocked-expression-illustration_6460-781.jpg?w=2000",
-              height: 500,
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Image.network(
+                "https://cdn.discordapp.com/attachments/902134320880287754/1053311245228458024/image_2022-12-16_210140875-removebg-preview.png",
+                height: 400,
+              ),
             ),
             const Text(
               "You are now login as",

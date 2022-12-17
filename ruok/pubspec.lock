@@ -88,13 +88,11 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-
   flutter_web_plugins:
     dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
-
   http:
     dependency: "direct main"
     description:
@@ -116,7 +114,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
-
   js:
     dependency: transitive
     description:
@@ -124,7 +121,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
-
   lints:
     dependency: transitive
     description:
@@ -223,6 +219,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.0.4"
+  regexed_validator:
+    dependency: "direct main"
+    description:
+      name: regexed_validator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0+1"
   shared_preferences:
     dependency: transitive
     description:

@@ -10,6 +10,10 @@ import 'package:ruok/drawer.dart';
 // Import masonry
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+// Import user
+import 'package:provider/provider.dart';
+import 'package:ruok/providers/user_provider.dart';
+
 // Import page
 import 'package:ruok/Quotes/pages/quotes_page_perImage.dart';
 import 'package:ruok/Quotes/forms/quotes_form.dart';
@@ -22,9 +26,10 @@ class QuotesPage extends StatefulWidget {
 }
 
 class _QuotesPageState extends State<QuotesPage> {
-
   @override
   Widget build(BuildContext context){
+    final user = context.watch<UserProvider>();
+
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -65,22 +70,33 @@ class _QuotesPageState extends State<QuotesPage> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Color(0xFF613FE5),
+                          Visibility(
+                            child: user.user.username != 'guest'?
+                            SizedBox(
+                              height: 65,
+                              width: double.infinity,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8, right: 8),
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Color(0xFFFFCA0C),
+                                    ),
+                                    onPressed: (){
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => const QuotesForm())
+                                      );
+                                    },
+                                    child: const Text(
+                                        'Share Yours',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        )
+                                    )),
                               ),
-                              onPressed: (){
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const QuotesForm())
-                                );
-                              },
-                              child: const Text(
-                                  'Share Yours',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  )
-                              )),
+                            )
+                                : const SizedBox(height: 0,)),
                           Container(
                             margin: const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 8),
                             child: MasonryGridView.builder(
@@ -98,7 +114,7 @@ class _QuotesPageState extends State<QuotesPage> {
                                     onTap: (){
                                       Navigator.push(
                                           context,
-                                          MaterialPageRoute(builder: (context) => QuotesPerImage(fields: snapshot.data![index].fields))
+                                          MaterialPageRoute(builder: (context) => QuotesPerImage(data: snapshot.data![index]))
                                       );
                                     },
                                     child: ClipRRect(

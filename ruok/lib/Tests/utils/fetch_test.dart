@@ -4,6 +4,10 @@ import 'package:ruok/Tests/models/my_results.dart';
 import 'package:ruok/drawer.dart';
 import 'package:ruok/Tests/pages/mh_tests.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:ruok/providers/user_provider.dart';
+import 'package:ruok/Auth/models/user_model.dart';
 
 class FetchRestsPage extends StatefulWidget {
   const FetchRestsPage({Key? key}) : super(key: key);
@@ -37,16 +41,38 @@ class _FetchRestsPageState extends State<FetchRestsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<UserProvider>();
     return Scaffold(
         appBar: AppBar(
-          title: const Text('To Do'),
+          backgroundColor: Color(0xFF613FE5),
+          title: const Text(
+            'Past Test Results',
+            style: TextStyle(fontFamily: "Roboto Slab"),
+          ),
         ),
         drawer: const RuokDrawer(),
         body: FutureBuilder(
             future: fetchTests(),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
-                return const Center(child: CircularProgressIndicator());
+                if (user.user.username == 'guest') {
+                  return Column(
+                    children: const [
+                      SizedBox(height: 35),
+                      Text(
+                        "Login today to save your results, and get many more benefits!",
+                        style: TextStyle(
+                            color: Color(0xFF613FE5),
+                            fontSize: 20,
+                            fontFamily: "Roboto Slab"),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 8),
+                    ],
+                  );
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
               } else {
                 if (!snapshot.hasData) {
                   return Column(
@@ -54,7 +80,7 @@ class _FetchRestsPageState extends State<FetchRestsPage> {
                       Text(
                         "Tidak ada data progres :(",
                         style:
-                            TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+                            TextStyle(color: Color(0xFF613FE5), fontSize: 20),
                       ),
                       SizedBox(height: 8),
                     ],
