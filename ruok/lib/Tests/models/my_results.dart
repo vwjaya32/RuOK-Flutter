@@ -1,7 +1,7 @@
 // To parse this JSON data, do
 //
 //     final myResults = myResultsFromJson(jsonString);
-
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
 List<MyResults> myResultsFromJson(String str) =>
@@ -12,12 +12,12 @@ String myResultsToJson(List<MyResults> data) =>
 
 class MyResults {
   MyResults({
-    required this.pk,
-    required this.fields,
+    @required this.pk,
+    @required this.fields,
   });
 
-  int pk;
-  Fields fields;
+  int? pk;
+  Fields? fields;
 
   factory MyResults.fromJson(Map<String, dynamic> json) => MyResults(
         pk: json["pk"],
@@ -26,20 +26,20 @@ class MyResults {
 
   Map<String, dynamic> toJson() => {
         "pk": pk,
-        "fields": fields.toJson(),
+        "fields": fields?.toJson(),
       };
 }
 
 class Fields {
   Fields({
-    required this.user,
-    required this.score,
-    required this.date,
+    @required this.user,
+    @required this.score,
+    @required this.date,
   });
 
-  int user;
-  int score;
-  DateTime date;
+  int? user;
+  int? score;
+  DateTime? date;
 
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
         user: json["user"],
@@ -50,6 +50,6 @@ class Fields {
   Map<String, dynamic> toJson() => {
         "user": user,
         "score": score,
-        "date": date.toIso8601String(),
+        "date": date?.toIso8601String(),
       };
 }
