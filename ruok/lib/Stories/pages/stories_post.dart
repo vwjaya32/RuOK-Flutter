@@ -297,7 +297,7 @@ class _ForumAddContentPageState extends State<MyForumFormPage> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.fromLTRB(35, 10, 10, 10),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Align(
               alignment: Alignment.bottomRight,
