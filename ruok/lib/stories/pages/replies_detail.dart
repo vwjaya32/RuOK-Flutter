@@ -1,6 +1,6 @@
 import 'package:ruok/stories/models/replies_models.dart';
-import 'package:ruok/stories/pages/stories_fetch.dart';
-import 'package:ruok/stories/pages/replies_fetch.dart';
+import 'package:ruok/stories/models/stories_fetch.dart';
+import 'package:ruok/stories/models/replies_fetch.dart';
 import 'package:ruok/stories/models/stories_models.dart';
 import 'package:ruok/stories/widgets/drawer.dart';
 import 'package:flutter/material.dart';
