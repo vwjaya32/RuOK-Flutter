@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ruok/main.dart';
 import 'package:ruok/drawer.dart';
 import 'package:ruok/Tests/utils/fetch_test.dart';
+import 'package:ruok/Tests/pages/mh_save.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:ruok/providers/user_provider.dart';
@@ -19,7 +20,7 @@ class _TestPageState extends State<TestPage> {
   static const yellow = Color(0xFFFFCA0C);
   static const red = Color(0xFFDE1C1C);
   String _results = "Please pick an answer for every questions first.";
-  void _resultcount() {
+  void _resultcount(String username) {
     setState(() {
       if (_totalcounter < 5) {
         _results = "Please pick an answer for every questions first.";
@@ -32,6 +33,53 @@ class _TestPageState extends State<TestPage> {
       } else {
         _results =
             "You are indicated to be in a very sad state. Talk to your closest friends or family, contact your psychiatrist or psychologist to help you.";
+      }
+      if (username != 'guest') {
+        setScore(_totalcounter);
+        showDialog(
+            context: context,
+            builder: (context) {
+              return Dialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                elevation: 15,
+                child: Container(
+                    child: ListView(
+                  children: [
+                    SizedBox(height: 75),
+                    Text('Score Saved!',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Roboto Slab")),
+                    SizedBox(height: 25),
+                    Text('${username}, your score is $_totalcounter,',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Roboto Slab")),
+                    SizedBox(height: 25),
+                    Text('$_results',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Roboto Slab")),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Go back',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Roboto Slab",
+                              color: purple)),
+                    )
+                  ],
+                )),
+              );
+            });
       }
     });
   }
@@ -351,7 +399,7 @@ class _TestPageState extends State<TestPage> {
               ),
               FloatingActionButton(
                 onPressed: () {
-                  _resultcount();
+                  _resultcount(user.user.username);
                 },
                 backgroundColor: yellow,
                 foregroundColor: yellow,

@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:ruok/Tests/models/my_results.dart';
 import 'package:ruok/drawer.dart';
 import 'package:ruok/Tests/pages/mh_tests.dart';
+import 'package:ruok/Tests/pages/mh_save.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -39,6 +40,11 @@ class _FetchRestsPageState extends State<FetchRestsPage> {
     return resultsList;
   }
 
+  static const purple = Color(0xFF613FE5);
+  static const black = Color(0xFF09050D);
+  static const yellow = Color(0xFFFFCA0C);
+  static const red = Color(0xFFDE1C1C);
+
   @override
   Widget build(BuildContext context) {
     final user = context.watch<UserProvider>();
@@ -51,73 +57,103 @@ class _FetchRestsPageState extends State<FetchRestsPage> {
           ),
         ),
         drawer: const RuokDrawer(),
-        body: FutureBuilder(
-            future: fetchTests(),
-            builder: (context, AsyncSnapshot snapshot) {
-              if (snapshot.data == null) {
-                if (user.user.username == 'guest') {
-                  return Column(
-                    children: const [
-                      SizedBox(height: 35),
-                      Text(
-                        "Login today to save your results, and get many more benefits!",
-                        style: TextStyle(
-                            color: Color(0xFF613FE5),
-                            fontSize: 20,
-                            fontFamily: "Roboto Slab"),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 8),
-                    ],
-                  );
-                } else {
-                  return const Center(child: CircularProgressIndicator());
-                }
-              } else {
-                if (!snapshot.hasData) {
-                  return Column(
-                    children: const [
-                      Text(
-                        "Tidak ada data progres :(",
-                        style:
-                            TextStyle(color: Color(0xFF613FE5), fontSize: 20),
-                      ),
-                      SizedBox(height: 8),
-                    ],
-                  );
-                } else {
-                  return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (_, index) => Container(
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 12),
-                            padding: const EdgeInsets.all(20.0),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15.0),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.black, blurRadius: 2.0)
-                                ]),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${snapshot.data![index].score}",
-                                  style: const TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+        body: SingleChildScrollView(
+            child: Column(
+          children: [
+            FutureBuilder(
+                future: fetchTests(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.data == null) {
+                    if (user.user.username == 'guest') {
+                      return Column(
+                        children: const [
+                          SizedBox(height: 35),
+                          Text(
+                            "Login today to save your results, and get many more benefits!",
+                            style: TextStyle(
+                                color: Color(0xFF613FE5),
+                                fontSize: 20,
+                                fontFamily: "Roboto Slab"),
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            "Or test yourself some more ;)",
+                            style: TextStyle(
+                                color: Color(0xFF613FE5),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                fontFamily: "Roboto Slab"),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      );
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  } else {
+                    if (!snapshot.hasData) {
+                      return Column(
+                        children: const [
+                          Text(
+                            "Tidak ada data progres :(",
+                            style: TextStyle(
+                                color: Color(0xFF613FE5), fontSize: 20),
+                          ),
+                          SizedBox(height: 8),
+                        ],
+                      );
+                    } else {
+                      return ListView.builder(
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (_, index) => Container(
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 12),
+                                padding: const EdgeInsets.all(20.0),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Colors.black, blurRadius: 2.0)
+                                    ]),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "${snapshot.data![index].score}",
+                                      style: const TextStyle(
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Text("${snapshot.data![index].user}"),
+                                    Text("${snapshot.data![index].date}"),
+                                  ],
                                 ),
-                                const SizedBox(height: 10),
-                                Text("${snapshot.data![index].user}"),
-                                Text("${snapshot.data![index].date}"),
-                              ],
-                            ),
-                          ));
-                }
-              }
-            }));
+                              ));
+                    }
+                  }
+                }),
+            SizedBox(
+              height: 20,
+            ),
+            TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const TestPage()));
+                },
+                child: Text('Go Back',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Roboto Slab",
+                        color: purple)))
+          ],
+        )));
   }
 }
