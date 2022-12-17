@@ -120,6 +120,21 @@ class _QuotesPageState extends State<QuotesPage> {
                                     child: ClipRRect(
                                       child: Image.network(
                                           snapshot.data![index].fields.image,
+                                          errorBuilder: (context, error, stackTrace) {
+                                            return Container(
+                                              color: Colors.amber,
+                                              alignment: Alignment.center,
+                                              child: const Text(
+                                                'Invalid Image! :(
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontFamily: "Roboto Slab",
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            );
+                                          },
                                           loadingBuilder: (context, child, loadingProgress){
                                             if (loadingProgress == null) return child;
 
