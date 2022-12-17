@@ -1,8 +1,8 @@
 import 'package:ruok/Stories/models/replies_models.dart';
-import 'package:ruok/Stories/pages/stories_fetch.dart';
+import 'package:ruok/Stories/models/stories_fetch.dart';
 import 'package:ruok/Stories/pages/stories_post.dart';
 import 'package:ruok/Stories/pages/stories_detail.dart';
-import 'package:ruok/Stories/pages/replies_fetch.dart';
+import 'package:ruok/Stories/models/replies_fetch.dart';
 import 'package:ruok/Stories/models/stories_models.dart';
 import 'package:ruok/drawer.dart';
 import 'package:flutter/material.dart';
@@ -81,13 +81,46 @@ class _MyForumState extends State<MyForumPage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text(
-                                    "${snapshot.data![i].fields.title}",
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                  Column(
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Color.fromARGB(
+                                                      255, 255, 255, 255)
+                                                  .withOpacity(0.5),
+                                              spreadRadius: 2,
+                                              blurRadius: 7,
+                                              offset: const Offset(0,
+                                                  3), // changes position of shadow
+                                            ),
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          color: purple,
+                                        ),
+                                        child: Text(
+                                          "${snapshot.data![i].fields.title}",
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Text(
+                                        "${(snapshot.data![i].fields.content).toString().substring(0, 5)}...",
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                          fontSize: 13.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),

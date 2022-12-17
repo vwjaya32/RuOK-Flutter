@@ -1,6 +1,6 @@
 import 'package:ruok/Stories/models/replies_models.dart';
-import 'package:ruok/Stories/pages/stories_fetch.dart';
-import 'package:ruok/Stories/pages/replies_fetch.dart';
+import 'package:ruok/Stories/models/stories_fetch.dart';
+import 'package:ruok/Stories/models/replies_fetch.dart';
 import 'package:ruok/Stories/pages/replies_detail.dart';
 import 'package:ruok/Stories/pages/replies_post.dart';
 import 'package:ruok/Stories/models/stories_models.dart';
@@ -17,6 +17,12 @@ class MyForumDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int stories_id = MyForum.pk;
+    String stories_title = MyForum.fields.title;
+    String stories_author = MyForum.fields.author.toString();
+    String stories_date = MyForum.fields.dateTime.toString().substring(0, 16);
+    String stories_content = MyForum.fields.content;
+
     return Scaffold(
       backgroundColor: black,
       appBar: AppBar(
@@ -44,16 +50,16 @@ class MyForumDetail extends StatelessWidget {
                 ),
               ],
               borderRadius: BorderRadius.circular(20),
-              color: purple,
+              color: Colors.white,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(MyForum.fields.title,
+                Text(stories_title,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: black,
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     )),
@@ -61,10 +67,10 @@ class MyForumDetail extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  MyForum.fields.author.toString(),
+                  stories_author,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: black,
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                   ),
@@ -73,10 +79,10 @@ class MyForumDetail extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  MyForum.fields.dateTime.toString().substring(0, 16),
+                  stories_date,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: black,
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                   ),
@@ -85,10 +91,10 @@ class MyForumDetail extends StatelessWidget {
                   height: 25,
                 ),
                 Text(
-                  MyForum.fields.content,
+                  stories_content,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: black,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),
@@ -99,39 +105,54 @@ class MyForumDetail extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 260),
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
-                  spreadRadius: 2,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-              borderRadius: BorderRadius.circular(20),
-              color: purple,
-            ),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
-                      Text(
-                        "COMMENT",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => MyReplyPage(stories_id: stories_id)),
+              );
+            },
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 300),
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3), // changes position of shadow
                   ),
-                ]),
+                ],
+                borderRadius: BorderRadius.circular(20),
+                color: purple,
+              ),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextButton(
+                      style: TextButton.styleFrom(
+                          padding: const EdgeInsets.all(15.0),
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          alignment: Alignment.center),
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MyReplyPage(
+                                  stories_id: stories_id,
+                                )),
+                      ),
+                      child: const Text('SHOW REPLIES',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ),
+                  ]),
+            ),
           ),
         ]),
       ),

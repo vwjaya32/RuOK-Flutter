@@ -248,6 +248,22 @@ class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
           ),
         ),
       ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.fromLTRB(35, 10, 10, 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Align(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                backgroundColor: purple,
+                onPressed: () => Navigator.pop(context),
+                child: const Icon(Icons.arrow_back),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
