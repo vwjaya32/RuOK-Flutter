@@ -81,24 +81,28 @@ class _MyReplyState extends State<MyReplyPage> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(
-                                  "${snapshot.data![i].fields.author}",
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  "${snapshot.data![i].fields.content}",
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 13.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      "${snapshot.data![i].fields.author}",
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "${snapshot.data![i].fields.content}",
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        fontSize: 13.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),

@@ -42,7 +42,7 @@ class _RepliesAddContentPageState extends State<MyRepliesFormPage> {
 
   void submit(String author, String date, String content) async {
     var url =
-        Uri.parse('https://ruok.up.railway.app/Replies/add-Replies-flutter/');
+        Uri.parse('https://ruok.up.railway.app/forum/add-replies-flutter/');
 
     var map = <String, dynamic>{};
 
